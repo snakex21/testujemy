@@ -1,0 +1,326 @@
+<!DOCTYPE html>
+<html lang="pl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Narzędzia Plików - Lokalna Baza Wiedzy</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    <!-- === SPIS TREŚCI === -->
+    <nav id="table-of-contents">
+        <h4>Spis Treści</h4>
+        <ul>
+            <!-- Linki zostaną wygenerowane przez JavaScript -->
+        </ul>
+    </nav>
+
+    <!-- === KONTENER GŁÓWNY === -->
+    <div class="main-wrapper">
+        <header>
+            <h1>📂 Narzędzia Plików - Kompletna Baza</h1>
+            <a href="index.html" class="back-button">← Powrót do strony głównej</a>
+        </header>
+
+        <nav class="tabs">
+            <!-- Poniżej znajduje się finalna wersja paska nawigacyjnego. -->
+
+            <a href="ai.html" class="tab-link">
+                <img src="icons/brain.svg" alt="AI">
+            </a>
+            <a href="edukacja.html" class="tab-link">
+                <img src="icons/education-icon.svg" alt="Edukacja">
+            </a>
+            <a href="ebooki.html" class="tab-link">
+                <img src="icons/ebook.png" alt="eBooki">
+            </a>
+            <a href="filmy.html" class="tab-link">
+                <img src="icons/play-video-150x150.png" alt="Filmy">
+            </a>
+            <a href="gry.html" class="tab-link">
+                <img src="icons/joystick-150x150.png" alt="Gry">
+            </a>
+            <a href="komiksy.html" class="tab-link">
+                <img src="icons/comic-book.png" alt="Komiksy">
+            </a>
+            <a href="linux-macos.html" class="tab-link">
+                <img src="icons/linux-logo.svg" alt="Linux i macOS">
+            </a>
+            <a href="livetv.html" class="tab-link">
+                <img src="icons/live-broadcast.png" alt="Live TV">
+            </a>
+            <a href="media-spolecznosciowe.html" class="tab-link">
+                <img src="icons/users.svg" alt="Media Społecznościowe">
+            </a>
+            <a href="miedzynarodowe.html" class="tab-link">
+                <img src="icons/globe.svg" alt="Międzynarodowe">
+            </a>
+            <a href="muzyka.html" class="tab-link">
+                <img src="icons/music-150x150.png" alt="Muzyka">
+            </a>
+            <a href="narzedzia-graficzne.html" class="tab-link">
+                <img src="icons/paint-brush.svg" alt="Narzędzia Graficzne">
+            </a>
+            <a href="narzedzia-plikow.html" class="tab-link active">
+                <img src="icons/file-tools.svg" alt="Narzędzia Plikowe">
+            </a>
+            <a href="narzedzia-systemowe.html" class="tab-link">
+                <img src="icons/system-tools.svg" alt="Narzędzia Systemowe">
+            </a>
+            <a href="narzedzia-tekstowe.html" class="tab-link">
+                <img src="icons/text-tools.svg" alt="Narzędzia Tekstowe">
+            </a>
+            <a href="pobieranie.html" class="tab-link">
+                <img src="icons/download.svg" alt="Pobieranie">
+            </a>
+            <a href="poradnik-gry.html" class="tab-link">
+                <img src="icons/guide-book.svg" alt="Poradnik Gracza">
+            </a>
+            <a href="pozostale.html" class="tab-link">
+                <img src="icons/box.svg" alt="Pozostałe">
+            </a>
+            <a href="programowanie.html" class="tab-link">
+                <img src="icons/code-icon.svg" alt="Programowanie">
+            </a>
+            <a href="privacy.html" class="tab-link">
+                <img src="icons/shield.svg" alt="Prywatność">
+            </a>
+            <a href="rozszerzenia.html" class="tab-link">
+                <img src="icons/puzzle-icon.svg" alt="Rozszerzenia">
+            </a>
+            <a href="sport.html" class="tab-link">
+                <img src="icons/basketball-150x150.png" alt="Sport">
+            </a>
+            <a href="telefony.html" class="tab-link">
+                <img src="icons/smartphone.svg" alt="Telefony">
+            </a>
+            <a href="torrenty.html" class="tab-link">
+                <img src="icons/utorrent-150x150.png" alt="Torrenty">
+            </a>
+            <a href="wideo.html" class="tab-link">
+                <img src="icons/film-icon.svg" alt="Wideo">
+            </a>
+            <a href="wschodni-skarbiec.html" class="tab-link">
+                <img src="icons/woman-150x150.png" alt="Wschodni Skarbiec">
+            </a>
+        </nav>
+
+        <main class="button-container">
+            <div id="content">
+                <div class="loading">Ładowanie linków...</div>
+            </div>
+        </main>
+    </div> <!-- Koniec .main-wrapper -->
+
+    <!-- Wczytanie danych z zewnętrznego pliku JS -->
+    <script src="dane/narzedzia-plikow-dane.js"></script>
+
+    <!-- Skrypt, który wyświetli dane i zarządza spisem treści -->
+    <script>
+        const fileIconSvg = `data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="white"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8l-6-6zM6 20V4h7v5h5v11H6z"/></svg>`;
+        
+        function createLink(link, className = '') {
+            const a = document.createElement('a');
+            a.href = link.url;
+            a.className = `play-button ${className} ${link.class || ''}`;
+            a.target = '_blank';
+
+            const img = document.createElement('img');
+            img.src = fileIconSvg;
+            img.alt = 'Plik';
+            a.appendChild(img);
+
+            a.appendChild(document.createTextNode(` ${link.name}`));
+
+            if (link.tag) {
+                const span = document.createElement('span');
+                span.className = 'tag';
+                span.textContent = link.tag;
+                a.appendChild(document.createTextNode(' '));
+                a.appendChild(span);
+            }
+            
+            return a;
+        }
+
+        function createFeaturedSection(featured) {
+            const div = document.createElement('div');
+            div.className = 'featured-section section-container';
+            div.id = 'featured';
+            const h2 = document.createElement('h2');
+            h2.textContent = featured.title;
+            div.appendChild(h2);
+
+            featured.links.forEach(link => {
+                const a = document.createElement('a');
+                a.href = link.url;
+                a.className = 'play-button featured';
+                a.target = '_blank';
+
+                const featuredContent = document.createElement('div');
+                featuredContent.className = 'featured-content';
+
+                const img = document.createElement('img');
+                img.src = fileIconSvg;
+                img.alt = 'Plik';
+                featuredContent.appendChild(img);
+
+                const featuredText = document.createElement('div');
+                featuredText.className = 'featured-text';
+
+                const titleSpan = document.createElement('span');
+                titleSpan.className = 'title';
+                titleSpan.textContent = link.title;
+                featuredText.appendChild(titleSpan);
+
+                const descriptionSpan = document.createElement('span');
+                descriptionSpan.className = 'description';
+                descriptionSpan.textContent = link.description;
+                featuredText.appendChild(descriptionSpan);
+
+                featuredContent.appendChild(featuredText);
+                a.appendChild(featuredContent);
+
+                const badgeSpan = document.createElement('span');
+                badgeSpan.className = 'badge';
+                badgeSpan.textContent = link.badge;
+                a.appendChild(badgeSpan);
+                
+                div.appendChild(a);
+            });
+            return div;
+        }
+
+        function createSection(section) {
+            const container = document.createElement('div');
+            container.className = 'section-container';
+            container.id = section.id;
+            const h2 = document.createElement('h2');
+            h2.textContent = section.title;
+            container.appendChild(h2);
+            const grid = document.createElement('div');
+            grid.className = 'category-grid';
+            section.links.forEach(link => {
+                grid.appendChild(createLink(link, section.class));
+            });
+            container.appendChild(grid);
+            return container;
+        }
+        
+        function createInfoBoxes() {
+            const div = document.createElement('div');
+            div.id = 'info';
+            div.className = 'section-container';
+            div.innerHTML = `
+                <div class="info-box">
+                    <h3>💡 Wskazówki i Bezpieczeństwo</h3>
+                    <ul>
+                        <li><strong>Menedżery Pobierania:</strong> Używaj JDownloader lub IDM, aby wznawiać pobieranie i zarządzać dużymi plikami.</li>
+                        <li><strong>Kopie Zapasowe:</strong> Regularnie twórz kopie zapasowe ważnych danych za pomocą narzędzi takich jak Kopia lub SyncThing.</li>
+                        <li><strong>Prywatność:</strong> Nigdy nie wrzucaj prywatnych lub poufnych plików na publiczne hostingi, nawet te szyfrowane.</li>
+                        <li><strong>Skanuj Pliki:</strong> Przed otwarciem pobranych plików, przeskanuj je za pomocą antywirusa lub narzędzi online.</li>
+                    </ul>
+                </div>`;
+            return div;
+        }
+        
+        function initializeScrollSpy() {
+            const sections = document.querySelectorAll('.section-container');
+            const tocLinks = document.querySelectorAll('#table-of-contents a');
+
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        tocLinks.forEach(link => {
+                            link.classList.remove('active');
+                            if (link.getAttribute('href').substring(1) === entry.target.id) {
+                                link.classList.add('active');
+                            }
+                        });
+                    }
+                });
+            }, { rootMargin: '-30% 0px -70% 0px' }); 
+
+            sections.forEach(section => {
+                observer.observe(section);
+            });
+        }
+        
+        // --- START NOWOŚCI ---
+        const initializeEventListeners = () => {
+            const searchBox = document.getElementById('searchBox');
+            if (searchBox) {
+                searchBox.addEventListener('input', (e) => {
+                    const searchTerm = e.target.value.toLowerCase();
+                    const buttons = document.querySelectorAll('.play-button');
+                    
+                    buttons.forEach(button => {
+                        const text = button.textContent.toLowerCase();
+                        if (text.includes(searchTerm)) {
+                            button.style.display = 'flex';
+                        } else {
+                            button.style.display = 'none';
+                        }
+                    });
+                });
+            }
+        };
+        // --- KONIEC NOWOŚCI ---
+
+        function loadFileToolsData() {
+            const contentDiv = document.getElementById('content');
+            const tocList = document.querySelector('#table-of-contents ul');
+            
+            if (typeof pageData === 'undefined') {
+                 contentDiv.innerHTML = `<div class="error"><h3>Błąd ładowania danych!</h3><p>Upewnij się, że plik <strong>dane/narzedzia-plikow-dane.js</strong> istnieje.</p></div>`;
+                 return;
+            }
+
+            const data = pageData;
+            contentDiv.innerHTML = '';
+            tocList.innerHTML = ''; 
+
+            // --- START NOWOŚCI ---
+            const searchContainer = document.createElement('div');
+            searchContainer.className = 'search-container';
+            const searchBox = document.createElement('input');
+            searchBox.type = 'text';
+            searchBox.className = 'search-box';
+            searchBox.id = 'searchBox';
+            searchBox.placeholder = '🔍 Wyszukaj narzędzie lub hosting...';
+            searchContainer.appendChild(searchBox);
+            contentDiv.appendChild(searchContainer);
+            // --- KONIEC NOWOŚCI ---
+
+            if (data.featured) {
+                contentDiv.appendChild(createFeaturedSection(data.featured));
+                const li = document.createElement('li');
+                li.innerHTML = `<a href="#featured">${data.featured.title}</a>`;
+                tocList.appendChild(li);
+            }
+            
+            data.sections.forEach(section => {
+                contentDiv.appendChild(createSection(section));
+                const li = document.createElement('li');
+                li.innerHTML = `<a href="#${section.id}">${section.title}</a>`;
+                tocList.appendChild(li);
+            });
+            
+            contentDiv.appendChild(createInfoBoxes());
+            const li = document.createElement('li');
+            li.innerHTML = `<a href="#info">💡 Wskazówki</a>`;
+            tocList.appendChild(li);
+            
+            initializeEventListeners(); // NOWOŚĆ
+            initializeScrollSpy();
+
+            if (tocList.querySelector('a')) {
+                tocList.querySelector('a').classList.add('active');
+            }
+        }
+
+        document.addEventListener('DOMContentLoaded', loadFileToolsData);
+    </script>
+</body>
+</html>

@@ -1,0 +1,184 @@
+<!DOCTYPE html>
+<html lang="pl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Centrum Narzędzi i Oprogramowania - Launcher z AI asystentem">
+    <title>Centrum Narzędzi i Oprogramowania</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    <!-- Górny, przyklejony pasek -->
+    <header class="main-header">
+        <div class="header-brand">
+            <h1>Centrum Narzędzi</h1>
+            <span class="header-subtitle">AI-Powered Launcher</span>
+        </div>
+        <div class="header-controls">
+            <!-- Search Mode Toggle -->
+            <div class="search-mode-container">
+                <div class="search-mode-toggle">
+                    <button class="mode-btn active" data-mode="normal" title="Szukaj po nazwie">
+                        <span class="mode-icon">🔍</span>
+                        <span class="mode-label">Nazwa</span>
+                    </button>
+                    <button class="mode-btn" data-mode="ai" title="AI Asystent">
+                        <span class="mode-icon">🤖</span>
+                        <span class="mode-label">AI</span>
+                    </button>
+                </div>
+                <div class="search-input-wrapper">
+                    <input type="search" 
+                           id="search-box" 
+                           placeholder="Szukaj aplikacji..."
+                           autocomplete="off">
+                    <div class="ai-status" id="ai-status">
+                        <span class="status-loading hidden">
+                            <span class="spinner"></span> AI...
+                        </span>
+                        <span class="status-ready hidden">✨</span>
+                        <span class="status-error hidden">⚠️</span>
+                    </div>
+                </div>
+            </div>
+            <button id="help-btn" class="btn help-btn">? Pomoc</button>
+        </div>
+    </header>
+
+    <!-- Główny kontener -->
+    <div class="main-container">
+        <!-- Panel boczny -->
+        <aside class="sidebar">
+            <div class="sidebar-section">
+                <h2>Aplikacje</h2>
+                <ul id="category-list"></ul>
+            </div>
+            
+            <div class="sidebar-section workflow-launcher">
+                <button id="workflow-start-btn" class="workflow-btn">
+                    <span class="icon">🚀</span>
+                    <span>Konfiguracja Systemu</span>
+                </button>
+            </div>
+            
+            <div class="sidebar-section driver-finder">
+                <h2>Sterowniki</h2>
+                
+                <input type="search" 
+                       id="driver-search-box" 
+                       class="driver-select" 
+                       placeholder="Szybkie wyszukiwanie...">
+                
+                <div class="driver-divider">lub wybierz z menu:</div>
+                
+                <select id="driver-type" class="driver-select">
+                    <option value="">Wybierz typ...</option>
+                </select>
+                <select id="driver-brand" class="driver-select" disabled>
+                    <option value="">Wybierz producenta...</option>
+                </select>
+                <select id="driver-series" class="driver-select" disabled>
+                    <option value="">Wybierz serię/model...</option>
+                </select>
+                
+                <div id="driver-result-container" class="driver-result hidden">
+                    <p>Wybrany folder ze sterownikami:</p>
+                    <button id="driver-copy-path-btn" class="btn copy-folder-btn">
+                        Skopiuj ścieżkę
+                    </button>
+                </div>
+            </div>
+        </aside>
+
+        <!-- Główny obszar treści -->
+        <main class="content-area">
+            <div id="main-view">
+                <!-- AI Search Results -->
+                <div id="ai-search-results" class="search-results-section ai-results hidden">
+                    <div class="results-header">
+                        <h3 class="results-title">
+                            <span class="icon">🤖</span>
+                            <span id="ai-results-count">Wyniki AI</span>
+                        </h3>
+                        <button class="btn-clear-search" id="clear-ai-search">✕</button>
+                    </div>
+                    <div class="ai-search-results-container"></div>
+                </div>
+                
+                <!-- Driver Search Results -->
+                <div id="driver-search-section" class="search-results-section hidden">
+                    <h3 class="search-section-title"></h3>
+                    <div class="driver-search-results"></div>
+                </div>
+                
+                <!-- Programs Grid -->
+                <section id="app-container"></section>
+            </div>
+            
+            <div id="detail-view" class="hidden">
+                <header class="view-header">
+                    <button class="btn back-btn">&larr; Wróć do listy</button>
+                </header>
+                <section id="detail-content" class="details-page"></section>
+            </div>
+            
+            <div id="workflow-view" class="hidden">
+                <header class="view-header">
+                     <button class="btn back-btn">&larr; Wróć do listy</button>
+                </header>
+                <section id="workflow-content"></section>
+            </div>
+        </main>
+    </div>
+
+    <!-- Template -->
+    <template id="program-card-template">
+        <a class="program-card">
+            <img src="" alt="Ikona programu" class="program-icon">
+            <div class="program-details">
+                <h3 class="program-title"></h3>
+                <p class="program-description"></p>
+                <div class="buttons"></div>
+            </div>
+        </a>
+    </template>
+    
+    <!-- Modal -->
+    <div class="modal-overlay hidden" id="help-modal">
+        <div class="modal-content">
+            <button id="close-modal-btn" class="close-btn">&times;</button>
+            <h2>Jak korzystać z launchera?</h2>
+            
+            <div class="modal-section">
+                <h3>🔍 Dwa tryby wyszukiwania:</h3>
+                <ul>
+                    <li><strong>Tryb Nazwa:</strong> Wpisz nazwę programu (np. "crystaldisk")</li>
+                    <li><strong>Tryb AI:</strong> Opisz czego szukasz (np. "odzyskiwanie plików")</li>
+                </ul>
+                <p class="modal-note">💡 Model AI ładuje się przy pierwszym użyciu (~23MB, potem cache offline)</p>
+            </div>
+            
+            <div class="modal-section">
+                <h3>📂 Sekcje:</h3>
+                <ul>
+                    <li><strong>Aplikacje:</strong> Główna lista. Kliknij kategorię lub użyj wyszukiwarki.</li>
+                    <li><strong>Sterowniki:</strong> Lista na dole lewego panelu.</li>
+                </ul>
+            </div>
+            
+            <div class="modal-section">
+                <h3>⚡ Szybkie otwieranie:</h3>
+                <ol>
+                    <li>Kliknij <strong>"Skopiuj ścieżkę"</strong></li>
+                    <li>Naciśnij <strong>Win + R</strong></li>
+                    <li>Wklej (<strong>Ctrl + V</strong>) i <strong>Enter</strong></li>
+                </ol>
+            </div>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+    <script src="ai-helper.js" defer></script>
+</body>
+</html>

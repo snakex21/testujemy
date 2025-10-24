@@ -1,0 +1,444 @@
+<!DOCTYPE html>
+<html lang="pl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Live TV - Telewizja Online z Całego Świata</title>
+    <link rel="stylesheet" href="style.css">
+    <style>
+        /* Dodatkowe style specyficzne dla Live TV */
+        .quick-links {
+            display: flex;
+            gap: 10px;
+            flex-wrap: wrap;
+            margin-bottom: 30px;
+            justify-content: center;
+        }
+
+        .quick-link {
+            padding: 10px 20px;
+            background: linear-gradient(135deg, var(--primary-accent), var(--secondary-accent));
+            color: white;
+            border-radius: 25px;
+            text-decoration: none;
+            font-weight: 500;
+            transition: all 0.3s;
+        }
+
+        .quick-link:hover {
+            transform: scale(1.1);
+            box-shadow: 0 10px 25px rgba(99, 102, 241, 0.3);
+        }
+
+        .stats-bar {
+            display: flex;
+            justify-content: center;
+            gap: 30px;
+            margin: 20px 0;
+            padding: 15px;
+            background: rgba(99, 102, 241, 0.1);
+            border-radius: var(--radius-lg);
+        }
+
+        .stat-item {
+            text-align: center;
+        }
+
+        .stat-number {
+            font-size: 1.5em;
+            font-weight: bold;
+            color: var(--primary-accent);
+        }
+
+        .stat-label {
+            font-size: 0.9em;
+            color: var(--text-muted);
+        }
+
+        .channel-count {
+            background: rgba(99, 102, 241, 0.1);
+            color: var(--primary-accent);
+            padding: 2px 8px;
+            border-radius: 12px;
+            font-size: 0.8em;
+            margin-left: 8px;
+            font-weight: 600;
+        }
+    </style>
+</head>
+<body>
+
+    <nav id="table-of-contents">
+        <h4>Spis Treści</h4>
+        <ul id="toc-list"></ul>
+    </nav>
+
+    <div class="main-wrapper">
+        <header>
+            <h1>📺 Live TV - Telewizja Online</h1>
+            <a href="index.html" class="back-button">← Powrót do strony głównej</a>
+        </header>
+
+        <nav class="tabs">
+            <!-- Poniżej znajduje się finalna wersja paska nawigacyjnego. -->
+
+            <a href="ai.html" class="tab-link">
+                <img src="icons/brain.svg" alt="AI">
+            </a>
+            <a href="edukacja.html" class="tab-link">
+                <img src="icons/education-icon.svg" alt="Edukacja">
+            </a>
+            <a href="ebooki.html" class="tab-link">
+                <img src="icons/ebook.png" alt="eBooki">
+            </a>
+            <a href="filmy.html" class="tab-link">
+                <img src="icons/play-video-150x150.png" alt="Filmy">
+            </a>
+            <a href="gry.html" class="tab-link">
+                <img src="icons/joystick-150x150.png" alt="Gry">
+            </a>
+            <a href="komiksy.html" class="tab-link">
+                <img src="icons/comic-book.png" alt="Komiksy">
+            </a>
+            <a href="linux-macos.html" class="tab-link">
+                <img src="icons/linux-logo.svg" alt="Linux i macOS">
+            </a>
+            <a href="livetv.html" class="tab-link active">
+                <img src="icons/live-broadcast.png" alt="Live TV">
+            </a>
+            <a href="media-spolecznosciowe.html" class="tab-link">
+                <img src="icons/users.svg" alt="Media Społecznościowe">
+            </a>
+            <a href="miedzynarodowe.html" class="tab-link">
+                <img src="icons/globe.svg" alt="Międzynarodowe">
+            </a>
+            <a href="muzyka.html" class="tab-link">
+                <img src="icons/music-150x150.png" alt="Muzyka">
+            </a>
+            <a href="narzedzia-graficzne.html" class="tab-link">
+                <img src="icons/paint-brush.svg" alt="Narzędzia Graficzne">
+            </a>
+            <a href="narzedzia-plikow.html" class="tab-link">
+                <img src="icons/file-tools.svg" alt="Narzędzia Plikowe">
+            </a>
+            <a href="narzedzia-systemowe.html" class="tab-link">
+                <img src="icons/system-tools.svg" alt="Narzędzia Systemowe">
+            </a>
+            <a href="narzedzia-tekstowe.html" class="tab-link">
+                <img src="icons/text-tools.svg" alt="Narzędzia Tekstowe">
+            </a>
+            <a href="pobieranie.html" class="tab-link">
+                <img src="icons/download.svg" alt="Pobieranie">
+            </a>
+            <a href="poradnik-gry.html" class="tab-link">
+                <img src="icons/guide-book.svg" alt="Poradnik Gracza">
+            </a>
+            <a href="pozostale.html" class="tab-link">
+                <img src="icons/box.svg" alt="Pozostałe">
+            </a>
+            <a href="programowanie.html" class="tab-link">
+                <img src="icons/code-icon.svg" alt="Programowanie">
+            </a>
+            <a href="privacy.html" class="tab-link">
+                <img src="icons/shield.svg" alt="Prywatność">
+            </a>
+            <a href="rozszerzenia.html" class="tab-link">
+                <img src="icons/puzzle-icon.svg" alt="Rozszerzenia">
+            </a>
+            <a href="sport.html" class="tab-link">
+                <img src="icons/basketball-150x150.png" alt="Sport">
+            </a>
+            <a href="telefony.html" class="tab-link">
+                <img src="icons/smartphone.svg" alt="Telefony">
+            </a>
+            <a href="torrenty.html" class="tab-link">
+                <img src="icons/utorrent-150x150.png" alt="Torrenty">
+            </a>
+            <a href="wideo.html" class="tab-link">
+                <img src="icons/film-icon.svg" alt="Wideo">
+            </a>
+            <a href="wschodni-skarbiec.html" class="tab-link">
+                <img src="icons/woman-150x150.png" alt="Wschodni Skarbiec">
+            </a>
+        </nav>
+
+        <main class="button-container">
+            <!-- STATYSTYKI -->
+            <div class="stats-bar">
+                <div class="stat-item">
+                    <div class="stat-number">500+</div>
+                    <div class="stat-label">Serwisów i Kanałów</div>
+                </div>
+                <div class="stat-item">
+                    <div class="stat-number">80+</div>
+                    <div class="stat-label">Krajów</div>
+                </div>
+                <div class="stat-item">
+                    <div class="stat-number">24/7</div>
+                    <div class="stat-label">Dostępność</div>
+                </div>
+            </div>
+
+            <div id="content">
+                <div class="loading">Ładowanie...</div>
+            </div>
+
+            <div class="info-box">
+                <h3>💡 Wskazówki dla początkujących</h3>
+                <ul>
+                    <li><strong>Najlepsze agregatory:</strong> TVPass, NTV Stream, TheTVApp oferują szeroki wybór kanałów.</li>
+                    <li><strong>Polska TV:</strong> Telewizjada.cc jest obecnie najlepszą opcją dla polskich kanałów.</li>
+                    <li><strong>Aplikacja na PC:</strong> VLC Media Player jest uniwersalnym odtwarzaczem IPTV, w połączeniu z playlistami M3U z IPTV-org.</li>
+                    <li><strong>Smart TV/Android TV:</strong> SmartTube to świetna, wolna od reklam alternatywa dla YouTube, a webOS Homebrew (LG) oraz TizenTube (Samsung) otwierają drzwi do większej kontroli.</li>
+                    <li><strong>Sport na żywo:</strong> DaddyLive TV to dobry punkt startowy, ale zawsze sprawdź naszą sekcję <a href="sport.html">Sport</a> dla bardziej szczegółowych źródeł.</li>
+                    <li><strong>Zawsze używaj:</strong> <a href="privacy.html">AdBlockera</a> na stronach z reklamami, aby poprawić komfort oglądania.</li>
+                </ul>
+            </div>
+
+            <div class="warning-box">
+                <h3>⚠️ Bezpieczeństwo i ważne informacje</h3>
+                <ul>
+                    <li>Używaj <a href="privacy.html">VPN</a> dla bezpieczeństwa, prywatności i dostępu do geo-blokowanych treści. Pamiętaj, że niektóre linki mogą wymagać VPN z konkretnego kraju (np. UK, USA, kraje europejskie).</li>
+                    <li>Zainstaluj <a href="privacy.html">uBlock Origin</a> (lub inny solidny AdBlocker) przed wejściem na strony, aby zminimalizować ryzyko wyskakujących okienek i przekierowań.</li>
+                    <li>Jakość streamów może się różnić w zależności od źródła i obciążenia serwera. Miej kilka zapasowych źródeł.</li>
+                    <li>NIE pobieraj plików .exe lub innych wykonywalnych programów z nieznanych źródeł.</li>
+                    <li>Oficjalne źródła (TVP, BBC iPlayer, ARTE itp.) są z reguły najbardziej stabilne i bezpieczne.</li>
+                    <li>Uważaj na linki przekierowujące lub wymagające instalacji dodatkowego oprogramowania.</li>
+                </ul>
+            </div>
+        </main>
+    </div>
+
+    <script src="dane/livetv-dane.js"></script>
+    <script>
+        // --- DATA RENDERING LOGIC ---
+
+        function createLink(link) {
+            const a = document.createElement('a');
+            a.href = link.url;
+            a.className = 'play-button';
+            a.target = '_blank';
+
+            const img = document.createElement('img');
+            img.src = 'icons/broadcast-icon.svg';
+            img.alt = 'Link';
+            a.appendChild(img);
+            
+            a.append(` ${link.name} `);
+
+            if (link.tag) {
+                const span = document.createElement('span');
+                span.className = 'tag';
+                span.textContent = link.tag;
+                a.appendChild(span);
+            }
+            return a;
+        }
+
+        function createFeaturedLink(link) {
+            const a = document.createElement('a');
+            a.href = link.url;
+            a.className = 'play-button featured';
+            a.target = '_blank';
+            
+            const img = document.createElement('img');
+            img.src = 'icons/broadcast-icon.svg';
+            img.alt = 'Link';
+            a.appendChild(img);
+
+            const titleSpan = document.createElement('span');
+            titleSpan.className = 'title';
+            titleSpan.textContent = link.name;
+            a.appendChild(titleSpan);
+
+            if (link.badge) {
+                const badgeSpan = document.createElement('span');
+                badgeSpan.className = 'badge';
+                badgeSpan.textContent = link.badge;
+                a.appendChild(badgeSpan);
+            }
+
+            if (link.description) {
+                const descriptionSpan = document.createElement('span');
+                descriptionSpan.className = 'description';
+                descriptionSpan.textContent = link.description;
+                a.appendChild(descriptionSpan);
+            }
+            return a;
+        }
+
+        function createSection(section) {
+            const container = document.createDocumentFragment();
+            
+            const h2 = document.createElement('h2');
+            h2.id = section.id;
+            h2.innerHTML = `${section.title} <span class="channel-count">${section.count}</span>`;
+            container.appendChild(h2);
+
+            const grid = document.createElement('div');
+            grid.className = 'category-grid';
+            
+            section.links.forEach(link => {
+                grid.appendChild(createLink(link));
+            });
+
+            container.appendChild(grid);
+            return container;
+        }
+
+        function createSubsection(subsection) {
+            const container = document.createDocumentFragment();
+            
+            const h3 = document.createElement('h3');
+            h3.id = subsection.id;
+            h3.textContent = subsection.title;
+            container.appendChild(h3);
+            
+            const grid = document.createElement('div');
+            grid.className = 'category-grid';
+            
+            subsection.links.forEach(link => {
+                grid.appendChild(createLink(link));
+            });
+
+            container.appendChild(grid);
+            return container;
+        }
+
+        function loadData(data) {
+            const content = document.getElementById('content');
+            const tocList = document.getElementById('toc-list');
+            content.innerHTML = ''; // Clear loading message
+
+            // -- Featured Section --
+            if (data.featured) {
+                const featuredSection = document.createElement('div');
+                featuredSection.className = 'featured-section';
+                
+                const h2 = document.createElement('h2');
+                h2.textContent = data.featured.title;
+                featuredSection.appendChild(h2);
+
+                data.featured.links.forEach(link => {
+                    featuredSection.appendChild(createFeaturedLink(link));
+                });
+                content.appendChild(featuredSection);
+            }
+
+            // -- Quick Links --
+            const quickLinksContainer = document.createElement('div');
+            quickLinksContainer.className = 'quick-links';
+            data.sections.forEach(section => {
+                const a = document.createElement('a');
+                a.href = `#${section.id}`;
+                a.className = 'quick-link';
+                a.textContent = section.title.split('(')[0].trim();
+                quickLinksContainer.appendChild(a);
+            });
+            content.appendChild(quickLinksContainer);
+
+            // -- Search Box --
+            const searchContainer = document.createElement('div');
+            searchContainer.className = 'search-container';
+            const searchBox = document.createElement('input');
+            searchBox.type = 'text';
+            searchBox.className = 'search-box';
+            searchBox.id = 'searchBox';
+            searchBox.placeholder = '🔍 Wyszukaj kanał lub serwis...';
+            searchContainer.appendChild(searchBox);
+            content.appendChild(searchContainer);
+
+            // -- Main Sections & TOC --
+            data.sections.forEach(section => {
+                // TOC item
+                const tocLi = document.createElement('li');
+                const tocA = document.createElement('a');
+                tocA.href = `#${section.id}`;
+                tocA.textContent = section.title.split('(')[0].trim();
+                tocLi.appendChild(tocA);
+                tocList.appendChild(tocLi);
+
+                // Content Section
+                if (section.subsections) {
+                    const h2 = document.createElement('h2');
+                    h2.id = section.id;
+                    h2.innerHTML = `${section.title} <span class="channel-count">${section.count}</span>`;
+                    content.appendChild(h2);
+                    section.subsections.forEach(subsection => {
+                        content.appendChild(createSubsection(subsection));
+                    });
+                } else {
+                    content.appendChild(createSection(section));
+                }
+            });
+            
+            // Re-initialize event listeners that depend on dynamic content
+            initializeEventListeners();
+        }
+        
+        // --- EVENT LISTENERS & SCROLLSPY ---
+
+        function initializeEventListeners() {
+            // Search function
+            const searchBox = document.getElementById('searchBox');
+            if (searchBox) {
+                searchBox.addEventListener('input', function(e) {
+                    const searchTerm = e.target.value.toLowerCase();
+                    const buttons = document.querySelectorAll('.play-button');
+                    
+                    buttons.forEach(button => {
+                        const text = button.textContent.toLowerCase();
+                        if (text.includes(searchTerm)) {
+                            button.style.display = 'flex';
+                        } else {
+                            button.style.display = 'none';
+                        }
+                    });
+                });
+            }
+
+            // Smooth scroll for quick links
+            document.querySelectorAll('.quick-link, #toc-list a').forEach(link => {
+                link.addEventListener('click', function(e) {
+                    e.preventDefault();
+                    const targetId = this.getAttribute('href').substring(1);
+                    const targetElement = document.getElementById(targetId);
+                    if (targetElement) {
+                        targetElement.scrollIntoView({ behavior: 'smooth' });
+                    }
+                });
+            });
+        }
+        
+        function initializeScrollSpy() {
+            const sections = pageData.sections.map(s => document.getElementById(s.id));
+            const tocLinks = document.querySelectorAll('#toc-list a');
+
+            const observer = new IntersectionObserver(entries => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        const id = entry.target.getAttribute('id');
+                        tocLinks.forEach(link => {
+                            link.classList.remove('active');
+                            if (link.getAttribute('href') === `#${id}`) {
+                                link.classList.add('active');
+                            }
+                        });
+                    }
+                });
+            }, { rootMargin: '0px 0px -50% 0px' });
+
+            sections.forEach(section => {
+                if (section) observer.observe(section);
+            });
+        }
+        
+        // --- INITIALIZATION ---
+        
+        document.addEventListener('DOMContentLoaded', () => {
+            loadData(pageData);
+            initializeScrollSpy();
+        });
+    </script>
+</body>
+</html>

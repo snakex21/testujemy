@@ -1,0 +1,339 @@
+<!DOCTYPE html>
+<html lang="pl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Komiksy - Lokalna Baza Wiedzy</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    <!-- === SPIS TREŚCI === -->
+    <nav id="table-of-contents">
+        <h4>Spis Treści</h4>
+        <ul>
+            <!-- Linki zostaną wygenerowane przez JavaScript -->
+        </ul>
+    </nav>
+
+    <!-- === KONTENER GŁÓWNY === -->
+    <div class="main-wrapper">
+        <header>
+            <h1>🦸 Komiksy - Kompletna Baza</h1>
+            <a href="index.html" class="back-button">← Powrót do strony głównej</a>
+        </header>
+
+        <nav class="tabs">
+            <!-- Poniżej znajduje się finalna wersja paska nawigacyjnego. -->
+
+            <a href="ai.html" class="tab-link">
+                <img src="icons/brain.svg" alt="AI">
+            </a>
+            <a href="edukacja.html" class="tab-link">
+                <img src="icons/education-icon.svg" alt="Edukacja">
+            </a>
+            <a href="ebooki.html" class="tab-link">
+                <img src="icons/ebook.png" alt="eBooki">
+            </a>
+            <a href="filmy.html" class="tab-link">
+                <img src="icons/play-video-150x150.png" alt="Filmy">
+            </a>
+            <a href="gry.html" class="tab-link">
+                <img src="icons/joystick-150x150.png" alt="Gry">
+            </a>
+            <a href="komiksy.html" class="tab-link active">
+                <img src="icons/comic-book.png" alt="Komiksy">
+            </a>
+            <a href="linux-macos.html" class="tab-link">
+                <img src="icons/linux-logo.svg" alt="Linux i macOS">
+            </a>
+            <a href="livetv.html" class="tab-link">
+                <img src="icons/live-broadcast.png" alt="Live TV">
+            </a>
+            <a href="media-spolecznosciowe.html" class="tab-link">
+                <img src="icons/users.svg" alt="Media Społecznościowe">
+            </a>
+            <a href="miedzynarodowe.html" class="tab-link">
+                <img src="icons/globe.svg" alt="Międzynarodowe">
+            </a>
+            <a href="muzyka.html" class="tab-link">
+                <img src="icons/music-150x150.png" alt="Muzyka">
+            </a>
+            <a href="narzedzia-graficzne.html" class="tab-link">
+                <img src="icons/paint-brush.svg" alt="Narzędzia Graficzne">
+            </a>
+            <a href="narzedzia-plikow.html" class="tab-link">
+                <img src="icons/file-tools.svg" alt="Narzędzia Plikowe">
+            </a>
+            <a href="narzedzia-systemowe.html" class="tab-link">
+                <img src="icons/system-tools.svg" alt="Narzędzia Systemowe">
+            </a>
+            <a href="narzedzia-tekstowe.html" class="tab-link">
+                <img src="icons/text-tools.svg" alt="Narzędzia Tekstowe">
+            </a>
+            <a href="pobieranie.html" class="tab-link">
+                <img src="icons/download.svg" alt="Pobieranie">
+            </a>
+            <a href="poradnik-gry.html" class="tab-link">
+                <img src="icons/guide-book.svg" alt="Poradnik Gracza">
+            </a>
+            <a href="pozostale.html" class="tab-link">
+                <img src="icons/box.svg" alt="Pozostałe">
+            </a>
+            <a href="programowanie.html" class="tab-link">
+                <img src="icons/code-icon.svg" alt="Programowanie">
+            </a>
+            <a href="privacy.html" class="tab-link">
+                <img src="icons/shield.svg" alt="Prywatność">
+            </a>
+            <a href="rozszerzenia.html" class="tab-link">
+                <img src="icons/puzzle-icon.svg" alt="Rozszerzenia">
+            </a>
+            <a href="sport.html" class="tab-link">
+                <img src="icons/basketball-150x150.png" alt="Sport">
+            </a>
+            <a href="telefony.html" class="tab-link">
+                <img src="icons/smartphone.svg" alt="Telefony">
+            </a>
+            <a href="torrenty.html" class="tab-link">
+                <img src="icons/utorrent-150x150.png" alt="Torrenty">
+            </a>
+            <a href="wideo.html" class="tab-link">
+                <img src="icons/film-icon.svg" alt="Wideo">
+            </a>
+            <a href="wschodni-skarbiec.html" class="tab-link">
+                <img src="icons/woman-150x150.png" alt="Wschodni Skarbiec">
+            </a>
+        </nav>
+
+        <main class="button-container">
+            <div id="content">
+                <div class="loading">Ładowanie linków...</div>
+            </div>
+        </main>
+    </div> <!-- Koniec .main-wrapper -->
+
+    <!-- Wczytanie danych z zewnętrznego pliku JS -->
+    <script src="dane/komiksy-dane.js"></script>
+
+    <!-- Skrypt, który wyświetli dane i zarządza spisem treści -->
+    <script>
+        // Funkcja do tworzenia linku
+        function createLink(link, className = '') {
+            const a = document.createElement('a');
+            a.href = link.url;
+            a.className = `play-button ${className} ${link.class || ''}`;
+            a.target = '_blank';
+            let html = `<img src="icons/book-icon.svg" alt="Link"> ${link.name}`;
+            if (link.tag) {
+                html += ` <span class="tag">${link.tag}</span>`;
+            }
+            a.innerHTML = html;
+            return a;
+        }
+
+        // Funkcja do tworzenia sekcji featured
+        function createFeaturedSection(featured) {
+            const div = document.createElement('div');
+            div.className = 'featured-section section-container'; // Dodano klasę
+            div.id = 'featured'; // Dodano ID
+            const h2 = document.createElement('h2');
+            h2.textContent = featured.title;
+            div.appendChild(h2);
+            featured.links.forEach(link => {
+                const a = document.createElement('a');
+                a.href = link.url;
+                a.className = 'play-button featured';
+                a.target = '_blank';
+                a.innerHTML = `<div class="featured-content"><img src="icons/book-icon.svg" alt="Link"><div class="featured-text"><span class="title">${link.title}</span><span class="description">${link.description}</span></div></div><span class="badge">${link.badge}</span>`;
+                div.appendChild(a);
+            });
+            return div;
+        }
+
+        // Funkcja do tworzenia zwykłej sekcji
+        function createSection(section) {
+            const container = document.createElement('div');
+            container.className = 'section-container'; // Dodano klasę do obserwowania
+            container.id = section.id; // Ustawiamy ID dla nawigacji
+            const h2 = document.createElement('h2');
+            h2.textContent = section.title;
+            container.appendChild(h2);
+            const grid = document.createElement('div');
+            grid.className = 'category-grid';
+            section.links.forEach(link => {
+                grid.appendChild(createLink(link, section.class));
+            });
+            container.appendChild(grid);
+            return container;
+        }
+
+        // Funkcja do tworzenia sekcji aplikacji
+        function createAppsSection(apps) {
+            const container = document.createElement('div');
+            container.className = 'section-container'; // Dodano klasę
+            container.id = 'apps'; // Dodano ID
+            const h2 = document.createElement('h2');
+            h2.textContent = '📱 Aplikacje i Czytniki';
+            container.appendChild(h2);
+            const appsDiv = document.createElement('div');
+            appsDiv.className = 'apps-section';
+            // Desktop
+            const desktopH3 = document.createElement('h3');
+            desktopH3.textContent = 'Desktop';
+            appsDiv.appendChild(desktopH3);
+            const desktopGrid = document.createElement('div');
+            desktopGrid.className = 'category-grid';
+            apps.desktop.forEach(app => desktopGrid.appendChild(createLink(app, 'app')));
+            appsDiv.appendChild(desktopGrid);
+            // Mobile
+            const mobileH3 = document.createElement('h3');
+            mobileH3.textContent = 'Mobile';
+            appsDiv.appendChild(mobileH3);
+            const mobileGrid = document.createElement('div');
+            mobileGrid.className = 'category-grid';
+            apps.mobile.forEach(app => mobileGrid.appendChild(createLink(app, 'app')));
+            appsDiv.appendChild(mobileGrid);
+            // Servers
+            const serversH3 = document.createElement('h3');
+            serversH3.textContent = 'Web & Serwery';
+            appsDiv.appendChild(serversH3);
+            const serversGrid = document.createElement('div');
+            serversGrid.className = 'category-grid';
+            apps.servers.forEach(app => serversGrid.appendChild(createLink(app, 'app')));
+            appsDiv.appendChild(serversGrid);
+            container.appendChild(appsDiv);
+            return container;
+        }
+        
+        // Funkcja do tworzenia info boxów
+        function createInfoBoxes() {
+            const div = document.createElement('div');
+            div.id = 'info'; // Dodano ID
+            div.className = 'section-container'; // Dodano klasę
+            div.innerHTML = `
+                <div class="info-box">
+                    <h3>💡 Wskazówki i Bezpieczeństwo</h3>
+                    <ul>
+                        <li><strong>Czytanie:</strong> ReadComicOnline lub XOXO Comics</li>
+                        <li><strong>Pobieranie:</strong> GetComics.org - codzienne aktualizacje</li>
+                        <li><strong>Zawsze używaj:</strong> <a href="privacy.html">AdBlockera</a> i <a href="privacy.html">VPN</a> przy torrentach.</li>
+                    </ul>
+                </div>`;
+            return div;
+        }
+        
+        // Inicjalizacja "Scroll Spy" do podświetlania linków w TOC
+        function initializeScrollSpy() {
+            const sections = document.querySelectorAll('.section-container');
+            const tocLinks = document.querySelectorAll('#table-of-contents a');
+
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        tocLinks.forEach(link => {
+                            link.classList.remove('active');
+                            if (link.getAttribute('href').substring(1) === entry.target.id) {
+                                link.classList.add('active');
+                            }
+                        });
+                    }
+                });
+            }, { rootMargin: '-30% 0px -70% 0px' }); 
+
+            sections.forEach(section => {
+                observer.observe(section);
+            });
+        }
+        
+        // --- START NOWOŚCI ---
+        // Funkcja do obsługi eventów (w tym wyszukiwania)
+        const initializeEventListeners = () => {
+            const searchBox = document.getElementById('searchBox');
+            if (searchBox) {
+                searchBox.addEventListener('input', (e) => {
+                    const searchTerm = e.target.value.toLowerCase();
+                    const buttons = document.querySelectorAll('.play-button');
+                    
+                    buttons.forEach(button => {
+                        const text = button.textContent.toLowerCase();
+                        if (text.includes(searchTerm)) {
+                            button.style.display = 'flex';
+                        } else {
+                            button.style.display = 'none';
+                        }
+                    });
+                });
+            }
+        };
+        // --- KONIEC NOWOŚCI ---
+
+        // Główna funkcja ładująca dane
+        function loadComicsData() {
+            const contentDiv = document.getElementById('content');
+            const tocList = document.querySelector('#table-of-contents ul');
+            
+            if (typeof comicsData === 'undefined') {
+                 contentDiv.innerHTML = `<div class="error"><h3>Błąd ładowania danych!</h3><p>Upewnij się, że plik <strong>dane/komiksy-dane.js</strong> istnieje.</p></div>`;
+                 return;
+            }
+
+            const data = comicsData;
+            contentDiv.innerHTML = '';
+            tocList.innerHTML = ''; 
+
+            // --- START NOWOŚCI ---
+            const searchContainer = document.createElement('div');
+            searchContainer.className = 'search-container';
+            const searchBox = document.createElement('input');
+            searchBox.type = 'text';
+            searchBox.className = 'search-box';
+            searchBox.id = 'searchBox';
+            searchBox.placeholder = '🔍 Wyszukaj komiks lub stronę...';
+            searchContainer.appendChild(searchBox);
+            contentDiv.appendChild(searchContainer);
+            // --- KONIEC NOWOŚCI ---
+
+            // Dodajemy sekcję polecanych
+            if (data.featured) {
+                contentDiv.appendChild(createFeaturedSection(data.featured));
+                const li = document.createElement('li');
+                li.innerHTML = `<a href="#featured">${data.featured.title}</a>`;
+                tocList.appendChild(li);
+            }
+            
+            // Dodajemy wszystkie pozostałe sekcje
+            data.sections.forEach(section => {
+                contentDiv.appendChild(createSection(section));
+                const li = document.createElement('li');
+                li.innerHTML = `<a href="#${section.id}">${section.title}</a>`;
+                tocList.appendChild(li);
+            });
+            
+            // Dodajemy sekcję aplikacji
+            if (data.apps) {
+                contentDiv.appendChild(createAppsSection(data.apps));
+                const li = document.createElement('li');
+                li.innerHTML = `<a href="#apps">📱 Aplikacje i Czytniki</a>`;
+                tocList.appendChild(li);
+            }
+            
+            // Dodajemy pola informacyjne
+            contentDiv.appendChild(createInfoBoxes());
+            const li = document.createElement('li');
+            li.innerHTML = `<a href="#info">💡 Wskazówki</a>`;
+            tocList.appendChild(li);
+            
+            initializeEventListeners(); // NOWOŚĆ
+            initializeScrollSpy();
+
+            // Ręcznie podświetlamy pierwszy element na liście po załadowaniu strony
+            if (tocList.querySelector('a')) {
+                tocList.querySelector('a').classList.add('active');
+            }
+        }
+
+        document.addEventListener('DOMContentLoaded', loadComicsData);
+    </script>
+</body>
+</html>

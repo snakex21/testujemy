@@ -1,0 +1,1381 @@
+<!DOCTYPE html>
+<html lang="pl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Biblia Detailingu & Serwisu - Audi A3 (Wersja PRO)</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700;800&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --bg-light: #f8f9fa;
+            --text-light: #2c3e50;
+            --card-bg-light: #ffffff;
+            --header-light: #1a252f;
+            --accent-color: #e74c3c;
+            --accent-secondary: #3498db;
+            --accent-success: #27ae60;
+            --shadow-light: rgba(0, 0, 0, 0.08);
+            --tip-bg-light: #e8f6fd;
+            --tip-border-light: #3498db;
+            --warning-bg-light: #fff3cd;
+            --warning-border-light: #ff6b6b;
+            --danger-bg-light: #ffe5e5;
+            --danger-border-light: #dc3545;
+            
+            --bg-dark: #1a1d23;
+            --text-dark: #e8eaed;
+            --card-bg-dark: #25292f;
+            --header-dark: #ffffff;
+            --shadow-dark: rgba(0, 0, 0, 0.5);
+            --tip-bg-dark: #1e3a52;
+            --tip-border-dark: #3498db;
+            --warning-bg-dark: #4a3c1f;
+            --warning-border-dark: #ff6b6b;
+            --danger-bg-dark: #3d1f1f;
+            --danger-border-dark: #dc3545;
+        }
+
+        * { 
+            box-sizing: border-box; 
+            margin: 0; 
+            padding: 0; 
+        }
+
+        body {
+            font-family: 'Poppins', sans-serif;
+            background: linear-gradient(135deg, var(--bg-light) 0%, #e8eef2 100%);
+            color: var(--text-light);
+            line-height: 1.7;
+            transition: all 0.3s ease;
+        }
+
+        body.dark-mode { 
+            background: linear-gradient(135deg, var(--bg-dark) 0%, #0f1419 100%);
+            color: var(--text-dark); 
+        }
+
+        .container { 
+            max-width: 1200px; 
+            margin: auto; 
+            padding: 20px; 
+        }
+
+        header { 
+            text-align: center; 
+            margin-bottom: 50px; 
+            padding: 40px 20px;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            border-radius: 20px;
+            box-shadow: 0 10px 40px rgba(102, 126, 234, 0.3);
+        }
+
+        header h1 { 
+            font-size: 3rem; 
+            color: white;
+            margin-bottom: 15px; 
+            font-weight: 800;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+        }
+
+        header p { 
+            font-size: 1.2rem; 
+            color: rgba(255, 255, 255, 0.95);
+            font-weight: 400;
+        }
+
+        header .subtitle {
+            font-size: 0.95rem;
+            color: rgba(255, 255, 255, 0.8);
+            margin-top: 10px;
+            font-style: italic;
+        }
+        
+        .theme-toggle {
+            position: fixed; 
+            top: 20px; 
+            right: 20px;
+            background: white;
+            color: var(--text-light);
+            border: none;
+            border-radius: 50px;
+            padding: 12px 24px; 
+            cursor: pointer; 
+            font-weight: 700;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.15);
+            transition: all 0.3s ease;
+            z-index: 1000;
+            font-size: 0.9rem;
+        }
+
+        body.dark-mode .theme-toggle { 
+            background: var(--card-bg-dark); 
+            color: var(--text-dark); 
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.5);
+        }
+        
+        .theme-toggle:hover { 
+            transform: translateY(-2px);
+            box-shadow: 0 6px 25px rgba(0, 0, 0, 0.2);
+        }
+
+        .section-title {
+            text-align: center; 
+            font-size: 2.3rem;
+            margin: 60px 0 30px 0; 
+            color: var(--header-light);
+            font-weight: 700;
+            position: relative;
+            padding-bottom: 15px;
+        }
+
+        .section-title::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 100px;
+            height: 4px;
+            background: linear-gradient(90deg, var(--accent-color), var(--accent-secondary));
+            border-radius: 2px;
+        }
+
+        body.dark-mode .section-title { 
+            color: var(--header-dark); 
+        }
+
+        .section-container { 
+            text-align: center; 
+        }
+
+        .product-grid { 
+            display: grid; 
+            grid-template-columns: repeat(auto-fit, minmax(340px, 1fr)); 
+            gap: 25px; 
+            margin-bottom: 40px;
+        }
+
+        .product-card {
+            background: var(--card-bg-light); 
+            border-radius: 15px; 
+            padding: 30px;
+            box-shadow: 0 8px 25px var(--shadow-light); 
+            transition: all 0.3s ease;
+            text-align: left;
+            border-top: 4px solid var(--accent-secondary);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .product-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(135deg, transparent 0%, rgba(52, 152, 219, 0.03) 100%);
+            pointer-events: none;
+        }
+
+        body.dark-mode .product-card { 
+            background: var(--card-bg-dark); 
+            box-shadow: 0 8px 25px var(--shadow-dark); 
+        }
+
+        .product-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 12px 35px var(--shadow-light);
+        }
+
+        body.dark-mode .product-card:hover {
+            box-shadow: 0 12px 35px var(--shadow-dark);
+        }
+        
+        .product-card h3 { 
+            font-size: 1.5rem; 
+            margin-bottom: 20px; 
+            color: var(--accent-color);
+            font-weight: 700;
+        }
+
+        .product-card p { 
+            font-size: 1rem; 
+            margin-bottom: 18px;
+            line-height: 1.6;
+        }
+        
+        .product-card ul { 
+            list-style: none; 
+        }
+
+        .product-card li { 
+            background: linear-gradient(135deg, var(--bg-light) 0%, #f0f4f8 100%);
+            padding: 12px 15px; 
+            border-radius: 8px; 
+            margin-bottom: 10px; 
+            font-weight: 600;
+            border-left: 3px solid var(--accent-secondary);
+            transition: all 0.2s ease;
+        }
+
+        .product-card li:hover {
+            transform: translateX(5px);
+            border-left-color: var(--accent-color);
+        }
+
+        body.dark-mode .product-card li { 
+            background: linear-gradient(135deg, var(--bg-dark) 0%, #1a1d23 100%);
+        }
+
+        .product-card span { 
+            font-weight: 400; 
+            font-style: italic; 
+            color: #7f8c8d;
+            display: block;
+            margin-top: 5px;
+            font-size: 0.9rem;
+        }
+
+        body.dark-mode .product-card span { 
+            color: #95a5a6; 
+        }
+
+        .instruction-card {
+            background: var(--card-bg-light);
+            border-radius: 15px;
+            padding: 35px;
+            box-shadow: 0 8px 25px var(--shadow-light);
+            text-align: left;
+            margin-bottom: 30px;
+            border-left: 5px solid var(--accent-color);
+            transition: all 0.3s ease;
+        }
+
+        body.dark-mode .instruction-card {
+            background: var(--card-bg-dark);
+            box-shadow: 0 8px 25px var(--shadow-dark);
+        }
+
+        .instruction-card:hover {
+            box-shadow: 0 12px 35px var(--shadow-light);
+        }
+
+        body.dark-mode .instruction-card:hover {
+            box-shadow: 0 12px 35px var(--shadow-dark);
+        }
+
+        .instruction-card h3 {
+            font-size: 1.8rem;
+            margin-bottom: 20px;
+            color: var(--accent-color);
+            font-weight: 700;
+        }
+
+        .instruction-card p {
+            font-size: 1rem;
+            margin-bottom: 20px;
+            line-height: 1.7;
+        }
+
+        .instruction-card ol {
+            padding-left: 25px;
+            counter-reset: item;
+            list-style: none;
+        }
+
+        .instruction-card ol > li {
+            counter-increment: item;
+            margin-bottom: 25px;
+            font-size: 1.05rem;
+            position: relative;
+            padding-left: 10px;
+        }
+
+        .instruction-card ol > li::before {
+            content: counter(item);
+            position: absolute;
+            left: -25px;
+            top: 0;
+            background: linear-gradient(135deg, var(--accent-color), #c0392b);
+            color: white;
+            width: 28px;
+            height: 28px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 700;
+            font-size: 0.9rem;
+        }
+
+        .instruction-card .sub-point {
+            margin-left: 25px;
+            font-size: 0.95rem;
+            margin-top: 10px;
+            padding: 10px 15px;
+            background: var(--tip-bg-light);
+            border-radius: 8px;
+            border-left: 3px solid var(--tip-border-light);
+            line-height: 1.6;
+        }
+
+        body.dark-mode .instruction-card .sub-point {
+            background: var(--tip-bg-dark);
+        }
+
+        .warning {
+            background: linear-gradient(135deg, var(--warning-bg-light) 0%, #fff9e6 100%);
+            border-left: 5px solid var(--warning-border-light);
+            padding: 20px;
+            margin-top: 25px;
+            border-radius: 10px;
+            box-shadow: 0 4px 15px rgba(255, 107, 107, 0.1);
+        }
+
+        body.dark-mode .warning {
+            background: linear-gradient(135deg, var(--warning-bg-dark) 0%, #3d3020 100%);
+        }
+
+        .warning strong {
+            color: var(--warning-border-light);
+            font-size: 1.15rem;
+            display: block;
+            margin-bottom: 12px;
+            font-weight: 700;
+        }
+
+        .warning ul {
+            list-style: none;
+            padding-left: 0;
+        }
+
+        .warning li {
+            padding: 10px 0;
+            padding-left: 30px;
+            position: relative;
+            line-height: 1.6;
+        }
+
+        .warning li::before {
+            content: '⚠️';
+            position: absolute;
+            left: 0;
+            top: 10px;
+            font-size: 1.2rem;
+        }
+
+        .danger-zone {
+            background: linear-gradient(135deg, var(--danger-bg-light) 0%, #ffebeb 100%);
+            border: 3px solid var(--danger-border-light);
+            border-radius: 12px;
+            padding: 25px;
+            margin: 25px 0;
+            box-shadow: 0 6px 20px rgba(220, 53, 69, 0.15);
+        }
+
+        body.dark-mode .danger-zone {
+            background: linear-gradient(135deg, var(--danger-bg-dark) 0%, #2d1818 100%);
+        }
+
+        .danger-zone h4 {
+            color: var(--danger-border-light);
+            font-size: 1.4rem;
+            margin-bottom: 15px;
+            font-weight: 700;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .danger-zone h4::before {
+            content: '🚫';
+            font-size: 1.5rem;
+        }
+
+        .danger-zone ul {
+            list-style: none;
+            padding-left: 0;
+        }
+
+        .danger-zone li {
+            padding: 12px 15px;
+            margin-bottom: 10px;
+            background: white;
+            border-radius: 8px;
+            border-left: 4px solid var(--danger-border-light);
+            font-weight: 600;
+            line-height: 1.6;
+        }
+
+        body.dark-mode .danger-zone li {
+            background: rgba(0, 0, 0, 0.3);
+        }
+
+        .pro-tip {
+            background: linear-gradient(135deg, #d4edda 0%, #c3e6cb 100%);
+            border-left: 5px solid var(--accent-success);
+            padding: 20px;
+            margin: 20px 0;
+            border-radius: 10px;
+            box-shadow: 0 4px 15px rgba(39, 174, 96, 0.1);
+        }
+
+        body.dark-mode .pro-tip {
+            background: linear-gradient(135deg, #1e3a28 0%, #163420 100%);
+        }
+
+        .pro-tip h4 {
+            color: var(--accent-success);
+            font-size: 1.2rem;
+            margin-bottom: 12px;
+            font-weight: 700;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .pro-tip h4::before {
+            content: '💡';
+            font-size: 1.3rem;
+        }
+
+        .service-card {
+            background: linear-gradient(135deg, #e8f6fd 0%, #d4ebf7 100%);
+            border-top: 4px solid var(--accent-secondary);
+        }
+
+        body.dark-mode .service-card {
+            background: linear-gradient(135deg, #1a3a52 0%, #122936 100%);
+        }
+
+        .highlight {
+            background: linear-gradient(135deg, rgba(231, 76, 60, 0.1) 0%, rgba(231, 76, 60, 0.05) 100%);
+            padding: 3px 8px;
+            border-radius: 5px;
+            font-weight: 600;
+            color: var(--accent-color);
+        }
+        
+        footer { 
+            text-align: center; 
+            margin-top: 60px; 
+            padding: 30px; 
+            font-size: 1rem; 
+            color: #7f8c8d;
+            background: var(--card-bg-light);
+            border-radius: 15px;
+            box-shadow: 0 4px 15px var(--shadow-light);
+        }
+
+        body.dark-mode footer { 
+            color: #95a5a6; 
+            background: var(--card-bg-dark);
+            box-shadow: 0 4px 15px var(--shadow-dark);
+        }
+
+        @media (max-width: 768px) {
+            header h1 { font-size: 2rem; }
+            .section-title { font-size: 1.8rem; }
+            .product-grid { grid-template-columns: 1fr; }
+        }
+    </style>
+</head>
+<body>
+
+    <button class="theme-toggle" id="theme-toggle">🌓 Zmień motyw</button>
+
+    <div class="container">
+        <header>
+            <h1>🚗 Biblia Detailingu & Serwisu Audi A3</h1>
+            <p>Profesjonalny przewodnik po bezpiecznej pielęgnacji lakieru i wnętrza</p>
+            <p class="subtitle">Metoda "zero rys" - szczegółowe instrukcje krok po kroku</p>
+        </header>
+
+        <!-- Sekcja z Listą Zakupów -->
+        <div class="section-container">
+            <h2 class="section-title">📋 Kompletna Lista Zakupów PRO</h2>
+        </div>
+        <div class="product-grid">
+            <div class="product-card">
+                <h3>🧴 Pielęgnacja Lakieru i Szyb</h3>
+                <ul>
+                    <li>SONAX Profiline EX 04-06 250ml
+                        <span>Pasta All-In-One: usuwa wżery, poleruje i woskuje w jednym kroku</span>
+                    </li>
+                    <li>ADBL Synthetic Spray Wax SSW
+                        <span>Quick Detailer do bieżącej pielęgnacji i odświeżania lakieru</span>
+                    </li>
+                    <li>ADBL Beetle Juice Squeezer
+                        <span>Profesjonalny płyn do usuwania owadów z lakieru</span>
+                    </li>
+                    <li>ADBL Glass Cleaner Ultra
+                        <span>Płyn do mycia szyb bez smug</span>
+                    </li>
+                    <li>Szampon do Myjki Pianowej
+                        <span>Np. ADBL Snow Foam lub Yeti Snow Foam - do lancy pianowej</span>
+                    </li>
+                    <li>ADBL Vampire Liquid 1L
+                        <span>Profesjonalny szampon do mycia kontaktowego (pH neutralny)</span>
+                    </li>
+                </ul>
+            </div>
+
+            <div class="product-card">
+                <h3>🧽 Czyszczenie i Konserwacja Wnętrza</h3>
+                <ul>
+                    <li>ADBL APC 5L
+                        <span>Uniwersalny koncentrat do czyszczenia plastików i tapicerki</span>
+                    </li>
+                    <li>ADBL Interior QD
+                        <span>Dressing do pielęgnacji plastików i maskowania rys</span>
+                    </li>
+                    <li>ADBL Bonnet
+                        <span>Delikatny środek do tapicerki i podsufitki</span>
+                    </li>
+                    <li>Shiny Garage No-Scent Odor Eliminator
+                        <span>Neutralizator zapachów bez zapachu</span>
+                    </li>
+                    <li>ADBL Leather Cleaner
+                        <span>Do czyszczenia skórzanej tapicerki</span>
+                    </li>
+                    <li>ADBL Leather Conditioner
+                        <span>Balsam odżywczy do skóry</span>
+                    </li>
+                </ul>
+            </div>
+
+            <div class="product-card">
+                <h3>🛠️ Narzędzia Detailingowe</h3>
+                <ul>
+                    <li>Flexipads Aplikator 3-kolorowy
+                        <span>Do ręcznego polerowania pastą Sonax</span>
+                    </li>
+                    <li>ADBL Twisted Towel 90x60cm
+                        <span>JEDEN duży ręcznik do osuszania całego lakieru</span>
+                    </li>
+                    <li>ADBL Goofer Towel
+                        <span>Dedykowana mikrofibra do szyb</span>
+                    </li>
+                    <li>Rękawica z mikrofibry LUB 3-4x Mikrofibra do mycia
+                        <span>Do bezpiecznego mycia kontaktowego. Mikrofibry: tańsza opcja, używaj kilku na zmianę!</span>
+                    </li>
+                    <li>ADBL Textile Brush
+                        <span>Szczotka do czyszczenia tapicerki</span>
+                    </li>
+                    <li>3x Mikrofibra do wnętrza
+                        <span>Osobne mikrofibry: do nanoszenia APC, do płukania wodą, do Interior QD</span>
+                    </li>
+                    <li>2x Mikrofibra do lakieru
+                        <span>Do Quick Detailera: jedna do nakładania, druga do docierania</span>
+                    </li>
+                    <li>Pędzelek detailingowy
+                        <span>Do czyszczenia kratek, przycisków i szczelin</span>
+                    </li>
+                </ul>
+            </div>
+
+            <div class="product-card service-card">
+                <h3>🔧 Serwis & Utrzymanie</h3>
+                <ul>
+                    <li>Liqui Moly Top Tec 4200 5W-30
+                        <span>Olej silnikowy VW 504 00 / 507 00 - minimum 10L na wymianę!</span>
+                    </li>
+                    <li>Filtr oleju Mann W719/45
+                        <span>Oryginalny filtr do silnika 2.0 TDI</span>
+                    </li>
+                    <li>Akumulator Bosch S4/S5
+                        <span>Akumulator o właściwej specyfikacji dla Audi A3</span>
+                    </li>
+                    <li>Butelka z atomizerem (500ml)
+                        <span>Do rozcieńczania APC i innych produktów</span>
+                    </li>
+                    <li>Wiadro z separatorem brudu
+                        <span>Do płukania rękawicy podczas mycia kontaktowego</span>
+                    </li>
+                </ul>
+            </div>
+        </div>
+
+        <!-- Sekcja z Instrukcjami -->
+        <div class="section-container">
+            <h2 class="section-title">📖 Instrukcje Detailingowe (Łopatologicznie Szczegółowe)</h2>
+        </div>
+
+        <div class="instruction-card">
+            <h3>Scenariusz 1A: Mycie 100% BEZDOTYKOWE (Najbezpieczniejsza Metoda!)</h3>
+            <p><strong>Używasz:</strong> Myjka Kärcher + Lanca Pianowa, Szampon do piany (Snow Foam), ADBL Beetle Juice (opcjonalnie), <span class="highlight">JEDEN ADBL Twisted Towel</span></p>
+            <p><strong>Cel:</strong> Umyć auto CAŁKOWICIE bez dotykania lakieru - tylko chemicznie i wodą pod ciśnieniem. ZERO ryzyka zarysowania!</p>
+            <p><strong>💡 Kiedy stosować:</strong> Rutynowe mycie (co tydzień/dwa), lekkie/średnie zabrudzenie, gdy nie ma wżerów owadów/smoły.</p>
+
+            <div class="pro-tip">
+                <h4>DLACZEGO TO NAJLEPSZE?</h4>
+                <ul style="list-style: none; padding-left: 0;">
+                    <li>✅ <strong>ZERO kontaktu z lakierem</strong> = ZERO ryzyka mikrozarysowań</li>
+                    <li>✅ <strong>Szybkie</strong> - 15-20 minut na całe auto</li>
+                    <li>✅ <strong>Bezpieczne</strong> - nawet jeśli lakier ma piasek, nie dotknie go nic</li>
+                    <li>✅ <strong>Idealne do regularnej pielęgnacji</strong></li>
+                </ul>
+            </div>
+
+            <div class="danger-zone">
+                <h4>ABSOLUTNIE ZAKAZANE!</h4>
+                <ul>
+                    <li>❌ <strong>NIGDY nie osuszaj auta wieloma małymi ściereczkami!</strong> Każde podniesienie i położenie to ryzyko mikrozarysowań!</li>
+                    <li>❌ <strong>NIGDY nie myj na słońcu!</strong> Woda i chemia wysychają, zostawiając plamy!</li>
+                    <li>❌ <strong>NIGDY nie przecieraj lakieru suchą ściereczką bez uprzedniego spłukania!</strong> Nawet mikroskopijny pył tworzy rysy!</li>
+                </ul>
+            </div>
+
+            <ol>
+                <li><strong>ETAP 1: BHP LAKIERU (Przygotowanie Środowiska)</strong>
+                    <div class="sub-point">🏠 <strong>Pracuj TYLKO w cieniu lub garażu!</strong> Na gorącym lakierze piana i woda wysychają w kilka sekund, tworząc trudne do usunięcia plamy.</div>
+                    <div class="sub-point">🌡️ <strong>Temperatura lakieru:</strong> Lakier musi być chłodny w dotyku. Jeśli auto stało na słońcu, poczekaj 30-60 minut.</div>
+                    <div class="sub-point">🧴 <strong>Przygotuj szampon w lancy pianowej:</strong> Wlej szampon do piany (np. ADBL Snow Foam) zgodnie z instrukcją producenta.</div>
+                </li>
+
+                <li><strong>ETAP 2: WSTĘPNE SPŁUKANIE (Usunięcie Grubego Brudu)</strong>
+                    <div class="sub-point">💦 Użyj myjki ciśnieniowej bez końcówki pianotwórczej. <strong>Spłucz całe auto silnym strumieniem wody</strong> od dachu do dołu.</div>
+                    <div class="sub-point">🎯 <strong>Cel:</strong> Mechanicznie spłukać piasek, kamyki, kurz - wszystko, co mogłoby zostać podczas mycia.</div>
+                    <div class="sub-point">⚠️ <strong>Szczególną uwagę zwróć na:</strong> progi, nadkola, dolne części zderzaków - tam kumuluje się najwięcej piasku.</div>
+                </li>
+
+                <li><strong>ETAP 3: PIANOWANIE (Chemiczna Dezaktywacja Brudu)</strong>
+                    <div class="sub-point">🫧 Załóż lancę pianową na myjkę. <strong>Pokryj CAŁE AUTO grubą warstwą piany</strong> od dachu w dół.</div>
+                    <div class="sub-point">⏱️ <strong>Poczekaj 5-10 minut.</strong> Piana musi mieć czas, aby chemicznie "nadgryźć" i rozluźnić brud. Piana powinna SPŁYWAĆ, a nie zasychać!</div>
+                    <div class="sub-point">⚠️ <strong>Jeśli piana zaczyna wysychać</strong> (białe plamy), natychmiast ją spłucz i pracuj na mniejszych sekcjach.</div>
+                    <div class="sub-point">💦 <strong>Spłucz pianę BARDZO dokładnie</strong> silnym strumieniem wody od góry do dołu. Ten etap usuwa 70-90% brudu BEZ dotykania lakieru!</div>
+                    
+                    <div class="pro-tip">
+                        <h4>💡 CZY MOGĘ POWTÓRZYĆ PIANOWANIE?</h4>
+                        <p><strong>TAK!</strong> Jeśli auto jest bardzo brudne, możesz zrobić:</p>
+                        <ul style="list-style: none; padding-left: 0;">
+                            <li>1️⃣ Pierwsze pianowanie → spłukanie</li>
+                            <li>2️⃣ Drugie pianowanie → poczekać dłużej → spłukanie</li>
+                            <li>✅ Efekt: jeszcze więcej brudu usuniętego bezdotykowo!</li>
+                        </ul>
+                    </div>
+                </li>
+
+                <li><strong>ETAP 4: CHEMICZNY ATAK NA OWADY (Opcjonalnie - Beetle Juice)</strong>
+                    <div class="sub-point">🐛 <strong>Jeśli po pianie nadal widzisz owady:</strong> Na mokry przód auta (maska, zderzak, lusterka) obficie spryskaj <span class="highlight">ADBL Beetle Juice</span>.</div>
+                    <div class="sub-point">⏱️ <strong>Poczekaj 3-5 minut.</strong> Aktywne składniki rozpuszczają białko z owadów.</div>
+                    <div class="sub-point">🚫 <strong>NIE POZWÓL MU WYSCHNĄĆ!</strong> Jeśli zaczyna schnąć, dolej więcej produktu.</div>
+                    <div class="sub-point">💦 Spłucz miejsce silnym strumieniem wody. Owady powinny spłynąć bez tarcia.</div>
+                    <div class="sub-point">💡 <strong>Jeśli nie masz Beetle Juice:</strong> Możesz powtórzyć pianowanie tylko na przodzie auta.</div>
+                </li>
+
+                <li><strong>ETAP 5: FINALNE SPŁUKANIE</strong>
+                    <div class="sub-point">💦 <strong>Spłucz całe auto czystą wodą</strong> pod ciśnieniem, od góry do dołu.</div>
+                    <div class="sub-point">🎯 Sprawdź, czy nie zostały żadne resztki piany lub brudu.</div>
+                    <div class="sub-point">✅ <strong>Auto jest teraz czyste - CAŁKOWICIE BEZDOTYKOWO!</strong></div>
+                </li>
+
+                <li><strong>ETAP 6: OSUSZANIE (Technika Jednego Ręcznika - ZERO Mikrozarysowań!)</strong>
+                    <div class="sub-point">🎯 <strong>To NAJWAŻNIEJSZY etap!</strong> 90% mikrozarysowań powstaje podczas osuszania!</div>
+                    
+                    <div class="pro-tip">
+                        <h4>DLACZEGO JEDEN RĘCZNIK?</h4>
+                        <p><strong>ADBL Twisted Towel (90x60cm)</strong> jest gigantyczny i mega-chłonny (może wchłonąć 10x więcej wody niż standardowa ściereczka). Dzięki temu:</p>
+                        <ul style="list-style: none; padding-left: 0;">
+                            <li>✅ Nie musisz go wiele razy podnosić i kłaść (każde takie działanie = ryzyko zarysowania)</li>
+                            <li>✅ Woda jest wchłaniana, a nie rozcierana</li>
+                            <li>✅ Duża powierzchnia = minimalne tarcie</li>
+                        </ul>
+                    </div>
+
+                    <div class="sub-point"><strong>KROK 6A: Spływ Wody (Redukcja 80% Wody)</strong></div>
+                    <div class="sub-point" style="margin-left: 20px;">
+                        💦 <strong>Zdejmij końcówkę z myjki.</strong> Woda ma lecieć jednolitym, łagodnym strumieniem (jak z węża ogrodowego, nie pod ciśnieniem).<br>
+                        🚿 <strong>Polewaj auto od dachu w dół.</strong> Woda zbije się w taflę i spłynie grawitacyjnie, zabierając ze sobą 80% wody!<br>
+                        ⏱️ Poświęć na to 30-60 sekund.
+                    </div>
+
+                    <div class="sub-point"><strong>KROK 6B: Osuszanie Powierzchni Płaskich (Dach, Maska, Klapa)</strong></div>
+                    <div class="sub-point" style="margin-left: 20px;">
+                        🧺 <strong>Weź suchy ADBL Twisted Towel.</strong> Rozłóż go NA CAŁEJ szerokości elementu (np. na całej masce).<br>
+                        👐 <strong>Chwyć za oba końce ręcznika</strong> i powoli, BEZ NACISKU, przeciągnij do siebie.<br>
+                        🎯 Ręcznik sam wchłonie wodę. Ty tylko prowadzisz, nie przyciskasz!<br>
+                        🔄 Po przejściu przez element, odwróć ręcznik na suchą stronę i kontynuuj.
+                    </div>
+
+                    <div class="sub-point"><strong>KROK 6C: Osuszanie Powierzchni Pionowych (Drzwi, Słupki)</strong></div>
+                    <div class="sub-point" style="margin-left: 20px;">
+                        📐 <strong>Złóż ręcznik na cztery równe części</strong> (masz teraz 8 czystych stron do użycia).<br>
+                        🤚 <strong>PRZYKŁADAJ</strong> złożony ręcznik do elementu (nie przecieraj!).<br>
+                        ⬇️ Ewentualnie wykonaj JEDNO delikatne pociągnięcie z góry na dół.<br>
+                        🔄 Zmieniaj stronę ręcznika, gdy poczujesz wilgoć.
+                    </div>
+
+                    <div class="danger-zone">
+                        <h4>CZEGO NIE ROBIĆ PODCZAS OSUSZANIA!</h4>
+                        <ul>
+                            <li>❌ <strong>NIE używaj kilku małych ściereczek!</strong> To zwiększa ryzyko zarysowań!</li>
+                            <li>❌ <strong>NIE szoruj ręcznikiem!</strong> Tylko przykładaj i wchłaniaj wodę!</li>
+                            <li>❌ <strong>NIE przyciskaj mocno!</strong> Ręcznik sam wchłonie wodę dzięki mikrofibrze!</li>
+                            <li>❌ <strong>NIE używaj mokrego ręcznika!</strong> Zmieniaj stronę na suchą!</li>
+                            <li>❌ <strong>NIE zapomnij o listwach i szparach!</strong> Woda wypływa stamtąd i tworzy zaciekinapnie!</li>
+                        </ul>
+                    </div>
+                </li>
+            </ol>
+
+            <div class="warning">
+                <strong>⚠️ PODSUMOWANIE NAJWAŻNIEJSZYCH ZASAD:</strong>
+                <ul>
+                    <li>☀️ Zawsze pracuj w cieniu na chłodnym lakierze</li>
+                    <li>🫧 Piana musi pracować 5-10 minut (nie wysychać!)</li>
+                    <li>💦 Spłukuj BARDZO dokładnie od góry do dołu</li>
+                    <li>🧺 JEDEN duży ręcznik do osuszania, nie wiele małych</li>
+                    <li>✅ Metoda 100% bezdotykowa = ZERO ryzyka zarysowań!</li>
+                </ul>
+            </div>
+        </div>
+
+        <div class="instruction-card">
+            <h3>Scenariusz 1B: Mycie z Kontaktem (Rękawicą LUB Mikrofibrą)</h3>
+            <p><strong>Używasz:</strong> Wszystko z 1A + <span class="highlight">Rękawica z mikrofibry LUB 3-4x Mikrofibra do mycia</span>, ADBL Vampire Liquid, wiadro z wodą, <span class="highlight">JEDEN ADBL Twisted Towel</span></p>
+            <p><strong>Cel:</strong> Usunąć uporczywy brud, który nie odszedł bezdotykowo (wżery owadów, smołę, kurz po budowie).</p>
+            <p><strong>💡 Kiedy stosować:</strong> Auto bardzo brudne, po długiej trasie, wżery owadów/smoły nie odeszły bezdotykowo, auto po zimie, uporczywy brud widoczny po pianowaniu.</p>
+
+            <div class="danger-zone">
+                <h4>ABSOLUTNIE ZAKAZANE!</h4>
+                <ul>
+                    <li>❌ <strong>NIGDY nie używaj gąbki!</strong> Gąbka działa jak papier ścierny i wrżyna brud w lakier!</li>
+                    <li>❌ <strong>NIGDY nie osuszaj auta wieloma małymi ściereczkami!</strong> Każde podniesienie i położenie to ryzyko mikrozarysowań!</li>
+                    <li>❌ <strong>NIGDY nie myj na słońcu!</strong> Woda i chemia wysychają, zostawiając plamy!</li>
+                    <li>❌ <strong>NIGDY nie myj tej samej rękawicy/mikrofibry do kół i lakieru!</strong> Opiłki hamulcowe zniszczą lakier!</li>
+                    <li>❌ <strong>NIGDY nie przecieraj lakieru suchą ściereczką bez uprzedniego spłukania!</strong> Nawet mikroskopijny pył tworzy rysy!</li>
+                    <li>❌ <strong>NIGDY nie zacznij mycia kontaktowego bez wcześniejszego pianowania!</strong> Brud zarysuje lakier!</li>
+                    <li>❌ <strong>NIGDY nie używaj tej samej mikrofibry do mycia i do osuszania/wnętrza!</strong> Osobne mikrofibry do każdego celu!</li>
+                </ul>
+            </div>
+
+            <div class="pro-tip">
+                <h4>KLUCZOWA ZASADA!</h4>
+                <p><strong>Mycie kontaktowe ZAWSZE wykonujesz DOPIERO PO:</strong></p>
+                <ul style="list-style: none; padding-left: 0;">
+                    <li>1️⃣ Spłukaniu wodą (ETAP 1 poniżej)</li>
+                    <li>2️⃣ Pianowaniu i spłukaniu (ETAP 2-3 poniżej)</li>
+                    <li>3️⃣ Ewentualnie Beetle Juice (ETAP 4 poniżej)</li>
+                    <li>✅ Dopiero TERAZ możesz bezpiecznie dotknąć lakieru rękawicą!</li>
+                </ul>
+                <p style="margin-top: 10px; color: #e74c3c; font-weight: 600;">⚠️ Bez tych kroków - ZARYSOWUJESZ lakier podczas mycia!</p>
+            </div>
+
+            <ol>
+                <li><strong>ETAP 1: BHP LAKIERU + WSTĘPNE SPŁUKANIE</strong>
+                    <div class="sub-point">🏠 <strong>Pracuj TYLKO w cieniu lub garażu!</strong> Na gorącym lakierze piana i woda wysychają w kilka sekund.</div>
+                    <div class="sub-point">🌡️ <strong>Temperatura lakieru:</strong> Chłodny w dotyku. Jeśli auto stało na słońcu, poczekaj 30-60 minut.</div>
+                    <div class="sub-point">💦 <strong>Użyj myjki ciśnieniowej.</strong> Spłucz całe auto silnym strumieniem wody od dachu do dołu - usuń piasek, kamyki, kurz.</div>
+                    <div class="sub-point">💧 <strong>Przygotuj JEDNO wiadro z czystą wodą</strong> - będzie służyło tylko do płukania rękawicy.</div>
+                </li>
+
+                <li><strong>ETAP 2: PIANOWANIE (Pre-Wash - OBOWIĄZKOWY przed kontaktem!)</strong>
+                    <div class="sub-point">🧴 <strong>Przygotuj szampon do piany</strong> (np. ADBL Snow Foam) w lancy pianowej według instrukcji producenta.</div>
+                    <div class="sub-point">🫧 <strong>Pokryj CAŁE AUTO grubą warstwą piany</strong> od dachu w dół.</div>
+                    <div class="sub-point">⏱️ <strong>Poczekaj 5-10 minut.</strong> Piana musi chemicznie rozluźnić brud. Piana powinna SPŁYWAĆ, a nie zasychać!</div>
+                    <div class="sub-point">⚠️ <strong>Jeśli piana zaczyna wysychać</strong> (białe plamy), natychmiast ją spłucz i pracuj na mniejszych sekcjach.</div>
+                </li>
+
+                <li><strong>ETAP 3: SPŁUKANIE PIANY</strong>
+                    <div class="sub-point">💦 <strong>Spłucz pianę BARDZO dokładnie</strong> silnym strumieniem wody od góry do dołu. Ten etap usuwa 70-80% brudu BEZ dotykania!</div>
+                    <div class="sub-point">🎯 To jest FUNDAMENT bezpiecznego mycia kontaktowego!</div>
+                </li>
+
+                <li><strong>ETAP 4: CHEMICZNY ATAK NA OWADY (Opcjonalnie - Beetle Juice)</strong>
+                    <div class="sub-point">🐛 <strong>Jeśli po pianie nadal widzisz owady:</strong> Na mokry przód auta obficie spryskaj <span class="highlight">ADBL Beetle Juice</span>.</div>
+                    <div class="sub-point">⏱️ <strong>Poczekaj 3-5 minut.</strong> NIE POZWÓL MU WYSCHNĄĆ!</div>
+                    <div class="sub-point">💦 Spłucz miejsce silnym strumieniem wody.</div>
+                </li>
+
+                <li><strong>ETAP 5: SZAMPON - Wybierz Metodę Aplikacji</strong>
+                    <div class="sub-point">🧴 <strong>Przygotuj ADBL Vampire Liquid.</strong> Masz 2 opcje aplikacji:</div>
+                    
+                    <div class="pro-tip" style="margin-top: 15px;">
+                        <h4>OPCJA A: Szampon przez Lancę Pianową (ZALECANA! 🏆)</h4>
+                        <p><strong>Jak to zrobić:</strong></p>
+                        <ul style="list-style: none; padding-left: 0;">
+                            <li>1️⃣ Wlej szampon <strong>ADBL Vampire Liquid</strong> do lancy pianowej (zamiast Snow Foam)</li>
+                            <li>2️⃣ Spienisz całe auto - ta piana ma właściwości myjące</li>
+                            <li>3️⃣ Ta piana będzie <strong>nawilżać i zabezpieczać lakier</strong> podczas mycia rękawicą</li>
+                            <li>✅ <strong>Zaleta:</strong> Lakier jest ciągle nawilżony i zabezpieczony warstwą pianki!</li>
+                        </ul>
+                    </div>
+
+                    <div class="warning" style="margin-top: 15px;">
+                        <strong>OPCJA B: Szampon z Wiadra (Tradycyjna)</strong>
+                        <p><strong>Jak to zrobić:</strong></p>
+                        <ul>
+                            <li>1️⃣ Przygotuj szampon ADBL Vampire Liquid w wiadrze (20ml/10L wody)</li>
+                            <li>2️⃣ Zanurzaj rękawicę w szamponie przed myciem każdej sekcji</li>
+                            <li>3️⃣ Nakładaj szampon NA RĘKAWICĘ, nie bezpośrednio na lakier</li>
+                            <li>⚠️ <strong>Wada:</strong> Musisz nosić wiadro, lakier może wysychać między sekcjami</li>
+                        </ul>
+                    </div>
+                </li>
+
+                <li><strong>ETAP 6: MYCIE KONTAKTOWE - Wybierz Narzędzie</strong>
+                    <div class="sub-point">🎯 <strong>Masz 2 opcje narzędzi do mycia:</strong></div>
+                    
+                    <div class="pro-tip" style="margin-top: 15px;">
+                        <h4>OPCJA 1: Rękawica z Mikrofibry 🧤</h4>
+                        <ul style="list-style: none; padding-left: 0;">
+                            <li>✅ Bardzo wygodna - zakładasz na rękę</li>
+                            <li>✅ Duża powierzchnia robocza</li>
+                            <li>✅ Łatwo płukać w wiadrze</li>
+                            <li>💰 <strong>Koszt:</strong> ~30-50 zł za dobrą rękawicę</li>
+                        </ul>
+                    </div>
+
+                    <div class="pro-tip" style="margin-top: 15px; background: linear-gradient(135deg, #d4edda 0%, #c3e6cb 100%);">
+                        <h4>OPCJA 2: Mikrofibra do Mycia (3-4 sztuki) 💰 TAŃSZA!</h4>
+                        <ul style="list-style: none; padding-left: 0;">
+                            <li>✅ <strong>Dużo tańsza!</strong> Masz już mikrofibry do innych celów</li>
+                            <li>✅ Równie bezpieczna jak rękawica (jeśli miękka i czysta)</li>
+                            <li>✅ Można mieć kilka na zmianę (np. 3-4 szt.)</li>
+                            <li>✅ Po użyciu - wypierz i masz jak nowe</li>
+                            <li>💰 <strong>Koszt:</strong> ~10-15 zł za sztukę = ~40-60 zł za zestaw 4 szt.</li>
+                        </ul>
+                        <p style="margin-top: 10px; font-weight: 600;">
+                            <strong>Jaka mikrofibra?</strong> Miękka, puszysta, o gramaturze min. 300gsm. WAŻNE: Używaj OSOBNYCH mikrofibr tylko do mycia lakieru - nie tych samych co do wnętrza czy osuszania!
+                        </p>
+                    </div>
+
+                    <div class="warning" style="margin-top: 15px;">
+                        <strong>💡 KTÓRE WYBRAĆ?</strong>
+                        <ul>
+                            <li><strong>Wybierz rękawicę, jeśli:</strong> Chcesz wygodę, planujesz myć często, lubisz tradycyjne rozwiązania</li>
+                            <li><strong>Wybierz mikrofibry, jeśli:</strong> Chcesz oszczędzić, masz już mikrofibry w domu, wolisz mieć kilka na zmianę</li>
+                        </ul>
+                        <p style="margin-top: 10px; font-weight: 600;">
+                            ⚠️ OBE opcje są RÓWNIE BEZPIECZNE dla lakieru! To kwestia preferencji i budżetu.
+                        </p>
+                    </div>
+
+                    <div class="sub-point" style="margin-top: 20px;"><strong>Technika Mycia (Wspólna dla Rękawicy i Mikrofibry):</strong></div>
+                    
+                    <div class="sub-point">🧤/🧺 <strong>Weź rękawicę LUB mikrofibrę do mycia.</strong></div>
+                    <div class="sub-point" style="margin-left: 20px;">
+                        • <strong>Jeśli używasz Opcji A (piana z lancy):</strong> Nakładaj rękawicę/mikrofibrę na lakier pokryty pianą z Vampire Liquid<br>
+                        • <strong>Jeśli używasz Opcji B (wiadro):</strong> Zanurz rękawicę/mikrofibrę w wiadrze z szamponem
+                    </div>
+                    
+                    <div class="sub-point">📍 <strong>Kolejność mycia (OD NAJCZYSTSZEGO DO NAJBRUDNIEJSZEGO):</strong></div>
+                    <div class="sub-point" style="margin-left: 20px;">
+                        1️⃣ Dach<br>
+                        2️⃣ Szyby<br>
+                        3️⃣ Górne panele drzwi<br>
+                        4️⃣ Maska/klapa bagażnika<br>
+                        5️⃣ Dolne części drzwi<br>
+                        6️⃣ Progi i zderzaki (najbrudniejsze!)
+                    </div>
+
+                    <div class="sub-point">✋ <strong>Technika mycia: TYLKO RUCHY PROSTE!</strong></div>
+                    <div class="sub-point" style="margin-left: 20px;">
+                        ✅ Ruchy od góry do dołu<br>
+                        ✅ Ruchy od przodu do tyłu<br>
+                        ✅ Ruchy "na krzyż" (góra-dół, potem lewo-prawo)<br>
+                        ❌ <strong>NIGDY kolistymi ruchami!</strong> Tworzą widoczne "hologramy"
+                    </div>
+
+                    <div class="sub-point">💪 <strong>Nacisk:</strong> Lekki do średniego. Pozwól pianie/szamponowi chemicznie pracować, nie szoruj siłą!</div>
+
+                    <div class="danger-zone" style="margin-top: 15px;">
+                        <h4>KLUCZ DO BRAKU RYS - System Płukania!</h4>
+                        <p><strong>Po umyciu KAŻDEJ małej sekcji (np. połowa maski, jedno drzwi):</strong></p>
+                        
+                        <p style="margin-top: 10px;"><strong>🧤 Jeśli używasz RĘKAWICY:</strong></p>
+                        <ul>
+                            <li>1️⃣ <strong>Wypłucz rękawicę</strong> w wiadrze z czystą wodą</li>
+                            <li>2️⃣ <strong>Wyciśnij brud</strong> z rękawicy (zobaczysz go osiadać na dnie)</li>
+                            <li>3️⃣ <strong>Ponownie nanieś szampon</strong> (piana z lancy lub zanurz w wiadrze)</li>
+                            <li>4️⃣ <strong>Dopiero teraz</strong> przechodź do następnej sekcji</li>
+                        </ul>
+
+                        <p style="margin-top: 15px;"><strong>🧺 Jeśli używasz MIKROFIBRY:</strong></p>
+                        <ul>
+                            <li>1️⃣ <strong>Wypłucz mikrofibrę</strong> w wiadrze z czystą wodą</li>
+                            <li>2️⃣ <strong>Wyciśnij brud</strong> z mikrofibry</li>
+                            <li>3️⃣ <strong>Jeszcze lepiej: WYMIEŃ na czystą mikrofibrę!</strong> Dlatego masz 3-4 sztuki na zmianę</li>
+                            <li>4️⃣ <strong>Nową/czystą mikrofibrę</strong> zanurz w szamponie i myj dalej</li>
+                        </ul>
+
+                        <p style="margin-top: 10px; font-weight: 600; color: #dc3545;">
+                            ⚠️ Jeśli nie płuczesz/nie wymieniasz - przenosisz brud i piasek po całym aucie = rysy!
+                        </p>
+
+                        <div class="pro-tip" style="margin-top: 15px;">
+                            <h4>💡 SYSTEM ROTACJI MIKROFIBR (Zalecany!)</h4>
+                            <p><strong>Przykład z 4 mikrofibrami:</strong></p>
+                            <ul style="list-style: none; padding-left: 0;">
+                                <li>🟢 <strong>Mikrofibra #1:</strong> Dach + szyby (najczystsze części)</li>
+                                <li>🔵 <strong>Mikrofibra #2:</strong> Górne panele drzwi + maska</li>
+                                <li>🟡 <strong>Mikrofibra #3:</strong> Dolne części drzwi + klapa</li>
+                                <li>🔴 <strong>Mikrofibra #4:</strong> Progi + zderzaki (najbrudniejsze!)</li>
+                            </ul>
+                            <p style="margin-top: 10px;">
+                                ✅ Po myciu - wszystkie do pralki! Następnym razem masz czysty zestaw.
+                            </p>
+                        </div>
+                    </div>
+                </li>
+
+                <li><strong>ETAP 7: FINALNE SPŁUKANIE</strong>
+                    <div class="sub-point">💦 <strong>Po umyciu całego auta, NATYCHMIAST spłucz szampon</strong> silnym strumieniem wody od góry do dołu.</div>
+                    <div class="sub-point">🎯 Sprawdź, czy nie zostały żadne resztki piany, szczególnie w szparach, listwach, lusterka.</div>
+                    <div class="sub-point">✅ Auto jest teraz idealnie czyste i gotowe do osuszenia!</div>
+                </li>
+
+                <li><strong>ETAP 8: OSUSZANIE (Technika Jednego Ręcznika - ZERO Mikrozarysowań!)</strong>
+                    <div class="sub-point">🎯 <strong>To NAJWAŻNIEJSZY etap!</strong> 90% mikrozarysowań powstaje podczas osuszania!</div>
+                    
+                    <div class="pro-tip">
+                        <h4>DLACZEGO JEDEN RĘCZNIK?</h4>
+                        <p><strong>ADBL Twisted Towel (90x60cm)</strong> jest gigantyczny i mega-chłonny (może wchłonąć 10x więcej wody niż standardowa ściereczka). Dzięki temu:</p>
+                        <ul style="list-style: none; padding-left: 0;">
+                            <li>✅ Nie musisz go wiele razy podnosić i kłaść (każde takie działanie = ryzyko zarysowania)</li>
+                            <li>✅ Woda jest wchłaniana, a nie rozcierana</li>
+                            <li>✅ Duża powierzchnia = minimalne tarcie</li>
+                        </ul>
+                    </div>
+
+                    <div class="sub-point"><strong>KROK 8A: Spływ Wody (Redukcja 80% Wody)</strong></div>
+                    <div class="sub-point" style="margin-left: 20px;">
+                        💦 <strong>Zdejmij końcówkę z myjki.</strong> Woda ma lecieć jednolitym, łagodnym strumieniem (jak z węża ogrodowego, nie pod ciśnieniem).<br>
+                        🚿 <strong>Polewaj auto od dachu w dół.</strong> Woda zbije się w taflę i spłynie grawitacyjnie, zabierając ze sobą 80% wody!<br>
+                        ⏱️ Poświęć na to 30-60 sekund.
+                    </div>
+
+                    <div class="sub-point"><strong>KROK 8B: Osuszanie Powierzchni Płaskich (Dach, Maska, Klapa)</strong></div>
+                    <div class="sub-point" style="margin-left: 20px;">
+                        🧺 <strong>Weź suchy ADBL Twisted Towel.</strong> Rozłóż go NA CAŁEJ szerokości elementu (np. na całej masce).<br>
+                        👐 <strong>Chwyć za oba końce ręcznika</strong> i powoli, BEZ NACISKU, przeciągnij do siebie.<br>
+                        🎯 Ręcznik sam wchłonie wodę. Ty tylko prowadzisz, nie przyciskasz!<br>
+                        🔄 Po przejściu przez element, odwróć ręcznik na suchą stronę i kontynuuj.
+                    </div>
+
+                    <div class="sub-point"><strong>KROK 8C: Osuszanie Powierzchni Pionowych (Drzwi, Słupki)</strong></div>
+                    <div class="sub-point" style="margin-left: 20px;">
+                        📐 <strong>Złóż ręcznik na cztery równe części</strong> (masz teraz 8 czystych stron do użycia).<br>
+                        🤚 <strong>PRZYKŁADAJ</strong> złożony ręcznik do elementu (nie przecieraj!).<br>
+                        ⬇️ Ewentualnie wykonaj JEDNO delikatne pociągnięcie z góry na dół.<br>
+                        🔄 Zmieniaj stronę ręcznika, gdy poczujesz wilgoć.
+                    </div>
+
+                    <div class="danger-zone" style="margin-top: 15px;">
+                        <h4>CZEGO NIE ROBIĆ PODCZAS OSUSZANIA!</h4>
+                        <ul>
+                            <li>❌ <strong>NIE używaj kilku małych ściereczek!</strong> To zwiększa ryzyko zarysowań!</li>
+                            <li>❌ <strong>NIE szoruj ręcznikiem!</strong> Tylko przykładaj i wchłaniaj wodę!</li>
+                            <li>❌ <strong>NIE przyciskaj mocno!</strong> Ręcznik sam wchłonie wodę dzięki mikrofibrze!</li>
+                            <li>❌ <strong>NIE używaj mokrego ręcznika!</strong> Zmieniaj stronę na suchą!</li>
+                            <li>❌ <strong>NIE zapomnij o listwach i szparach!</strong> Woda wypływa stamtąd i tworzy zacieki!</li>
+                        </ul>
+                    </div>
+                </li>
+            </ol>
+
+            <div class="warning">
+                <strong>⚠️ PODSUMOWANIE NAJWAŻNIEJSZYCH ZASAD:</strong>
+                <ul>
+                    <li>☀️ Zawsze pracuj w cieniu na chłodnym lakierze</li>
+                    <li>🫧 Zawsze najpierw pianuj - DOPIERO potem dotykaj lakieru!</li>
+                    <li>🧤 Rękawica z mikrofibry LUB miękkie mikrofibry do mycia - NIGDY gąbka!</li>
+                    <li>💦 Płucz rękawicę/mikrofibrę po każdej małej sekcji w czystej wodzie!</li>
+                    <li>🔄 Jeśli używasz mikrofibr - miej 3-4 sztuki i wymieniaj na czyste!</li>
+                    <li>✋ Tylko ruchy proste - nigdy koliste!</li>
+                    <li>🧺 JEDEN duży ręcznik do osuszania, nie wiele małych!</li>
+                    <li>🚫 Nie myj kół tym samym narzędziem co lakier!</li>
+                    <li>🚫 Osobne mikrofibry: do mycia ≠ do osuszania ≠ do wnętrza!</li>
+                </ul>
+            </div>
+
+            <div class="pro-tip" style="margin-top: 20px;">
+                <h4>💰 PODSUMOWANIE KOSZTÓW (Rękawica vs Mikrofibry)</h4>
+                <p><strong>Opcja 1 - Rękawica:</strong></p>
+                <ul style="list-style: none; padding-left: 0;">
+                    <li>🧤 1x Rękawica z mikrofibry: ~30-50 zł</li>
+                    <li>✅ <strong>Plusy:</strong> Wygodna, łatwa w użyciu, trwała</li>
+                </ul>
+                <p style="margin-top: 10px;"><strong>Opcja 2 - Mikrofibry (TAŃSZA!):</strong></p>
+                <ul style="list-style: none; padding-left: 0;">
+                    <li>🧺 4x Mikrofibra do mycia (300gsm+): ~40-60 zł za zestaw</li>
+                    <li>✅ <strong>Plusy:</strong> Tańsze, masz kilka na zmianę, łatwo prać, uniwersalne</li>
+                    <li>💡 <strong>Oszczędność:</strong> Jeśli masz już mikrofibry w domu - nie musisz nic kupować!</li>
+                </ul>
+                <p style="margin-top: 15px; font-weight: 600; color: #27ae60;">
+                    🎯 <strong>Moja rekomendacja:</strong> Jeśli masz już mikrofibry lub chcesz oszczędzić - wybierz mikrofibry! Efekt taki sam, koszt niższy.
+                </p>
+            </div>
+        </div>
+
+        <div class="instruction-card">
+            <h3>🤔 Które Mycie Wybrać? (Porównanie Metod)</h3>
+            
+            <div class="pro-tip">
+                <h4>🏆 SCENARIUSZ 1A: 100% BEZDOTYKOWY (ZALECANY jako standard!)</h4>
+                <p><strong>✅ Kiedy stosować:</strong></p>
+                <ul style="list-style: none; padding-left: 0;">
+                    <li>✓ Rutynowe mycie (co tydzień/dwa tygodnie)</li>
+                    <li>✓ Lekkie do średniego zabrudzenie</li>
+                    <li>✓ Auto po deszczu, kurzu, normalnej jeździe</li>
+                    <li>✓ Chcesz MAKSYMALNE bezpieczeństwo dla lakieru</li>
+                    <li>✓ Auto ma świeże polerowanie/wosk (nie chcesz go ścierać)</li>
+                </ul>
+                <p><strong>🎯 Efektywność:</strong> Usuwa 70-90% brudu całkowicie bezdotykowo!</p>
+                <p><strong>⏱️ Czas:</strong> 15-20 minut</p>
+                <p><strong>🛡️ Bezpieczeństwo:</strong> ⭐⭐⭐⭐⭐ (ZERO ryzyka mikrozarysowań)</p>
+            </div>
+
+            <div class="warning">
+                <strong>⚙️ SCENARIUSZ 1B: Z KONTAKTEM (Rękawica LUB Mikrofibry)</strong>
+                <p><strong>✅ Kiedy stosować:</strong></p>
+                <ul>
+                    <li>✓ Auto BARDZO brudne (np. po budowie, po zimie)</li>
+                    <li>✓ Wżery owadów nie odeszły bezdotykowo</li>
+                    <li>✓ Smoła, żywica z drzew</li>
+                    <li>✓ Uporczywy brud, który widać po pianowaniu</li>
+                    <li>✓ Auto nie było myte miesiącami</li>
+                </ul>
+                <p><strong>🛠️ Narzędzie do wyboru:</strong></p>
+                <ul>
+                    <li>🧤 <strong>Rękawica z mikrofibry:</strong> ~30-50 zł (wygodna, jedna sztuka wystarcza)</li>
+                    <li>🧺 <strong>Mikrofibry do mycia (3-4 szt.):</strong> ~40-60 zł (tańsze, masz kilka na zmianę, łatwo prać)</li>
+                    <li>💡 <strong>Efekt identyczny!</strong> To tylko kwestia preferencji i budżetu</li>
+                </ul>
+                <p><strong>🎯 Efektywność:</strong> Usuwa 95-100% brudu (najdokładniejsza metoda)</p>
+                <p><strong>⏱️ Czas:</strong> 30-45 minut</p>
+                <p><strong>🛡️ Bezpieczeństwo:</strong> ⭐⭐⭐⭐ (Bezpieczne TYLKO po wcześniejszym pianowaniu!)</p>
+            </div>
+
+            <div class="pro-tip">
+                <h4>💡 ZŁOTA ZASADA DETAILINGU</h4>
+                <p style="font-size: 1.1rem; font-weight: 600;">
+                    "Najpierw usuń chemicznie to, co można usunąć chemicznie. Dotykaj lakieru TYLKO wtedy, gdy to absolutnie konieczne."
+                </p>
+                <p><strong>Dlatego 90% myć powinno być metodą 1A (bezdotykową)!</strong></p>
+            </div>
+        </div>
+
+        <div class="instruction-card">
+            <h3>Scenariusz 2: Kompleksowe Czyszczenie Wnętrza (System 3 Mikrofibr)</h3>
+            <p><strong>Używasz:</strong> Odkurzacz, ADBL APC, ADBL Interior QD, ADBL Bonnet, Szczotka, Płyn do szyb, <span class="highlight">3 OSOBNE mikrofibry</span></p>
+            <p><strong>Cel:</strong> Gruntowne wyczyszczenie wnętrza z zachowaniem matowego wykończenia bez smug, mazów i zacieków.</p>
+
+            <div class="danger-zone">
+                <h4>NAJCZĘSTSZE BŁĘDY PRZY CZYSZCZENIU WNĘTRZA!</h4>
+                <ul>
+                    <li>❌ <strong>Używanie JEDNEJ mikrofibry do wszystkiego</strong> - to gwarancja smug i mazów!</li>
+                    <li>❌ <strong>Spryskiwanie APC bezpośrednio na deskę rozdzielczą</strong> - zalejsz elektronikę!</li>
+                    <li>❌ <strong>Brak etapu neutralizacji wodą</strong> - resztki detergentu tworzą lepkie mazy!</li>
+                    <li>❌ <strong>Stosowanie zbyt dużej ilości Interior QD</strong> - powstają smugi!</li>
+                    <li>❌ <strong>Mycie szyb na koniec</strong> - kurz osiada na świeżo umytych szybach!</li>
+                </ul>
+            </div>
+
+            <div class="pro-tip">
+                <h4>SYSTEM 3 MIKROFIBR (Klucz do Sukcesu!)</h4>
+                <p><strong>Przygotuj TRZY osobne, czyste mikrofibry i OZNACZ je (np. kolorowymi klamerkami):</strong></p>
+                <ul style="list-style: none; padding-left: 0;">
+                    <li>🔴 <strong>MIKROFIBRA #1 - "Brudna robota"</strong> - do nanoszenia APC (będzie zabrudzona)</li>
+                    <li>🔵 <strong>MIKROFIBRA #2 - "Neutralizacja"</strong> - wilgotna, do płukania wodą (usuwa resztki APC)</li>
+                    <li>🟢 <strong>MIKROFIBRA #3 - "Wykończenie"</strong> - SUCHA, do Interior QD (efekt WOW)</li>
+                </ul>
+                <p><strong>⚠️ NIGDY nie mieszaj tych mikrofibr!</strong> Każda ma swoją rolę!</p>
+            </div>
+
+            <ol>
+                <li><strong>ODKURZANIE (Fundament Czystości)</strong>
+                    <div class="sub-point">🚪 <strong>Wyjmij dywaniki.</strong> Odkurz je osobno i wytrząśnij.</div>
+                    <div class="sub-point">🪑 <strong>Używając końcówki szczelinowej, odkurz w kolejności:</strong></div>
+                    <div class="sub-point" style="margin-left: 20px;">
+                        1. Fotele (szczególnie szwy i złączenia)<br>
+                        2. Podłogę (pod fotelami!)<br>
+                        3. Boczki drzwi<br>
+                        4. Tunel środkowy<br>
+                        5. Schowki<br>
+                        6. Bagażnik
+                    </div>
+                    <div class="sub-point">⚠️ <strong>Poświęć na to minimum 15-20 minut.</strong> Każdy ziarnko piasku, które zostanie, będzie rysować plastik podczas wycierania!</div>
+                </li>
+
+                <li><strong>CZYSZCZENIE GŁÓWNE - ETAP 1: APC (Brudna Robota - Mikrofibra #1)</strong>
+                    <div class="sub-point">🧴 <strong>Przygotuj roztwór ADBL APC:</strong> 1:10 z wodą (50ml APC + 450ml wody) w butelce z atomizerem.</div>
+                    <div class="sub-point">🔴 <strong>Weź MIKROFIBRĘ #1.</strong> Spryskaj NA NIĄ (nie na plastik!) 3-4 psiknięcia APC.</div>
+                    <div class="sub-point">🎯 <strong>Przecieraj wszystkie plastikowe elementy:</strong></div>
+                    <div class="sub-point" style="margin-left: 20px;">
+                        • Deskę rozdzielczą<br>
+                        • Tunelśrodkowy<br>
+                        • Panele drzwi<br>
+                        • Schowki<br>
+                        • Kierownicę (delikatnie!)
+                    </div>
+                    <div class="sub-point">🖌️ <strong>Do kratek nawiewu, przycisków i szczelin</strong> użyj pędzelka/patyczka kosmetycznego zamoczonego w APC.</div>
+                    <div class="sub-point">⏱️ APC ma czas (30-60 sekund), aby chemicznie oddzielić brud i tłuszcz od powierzchni.</div>
+                </li>
+
+                <li><strong>NEUTRALIZACJA - ETAP 2: Woda (Usuwa Resztki - Mikrofibra #2) 🔑 KLUCZOWY KROK!</strong>
+                    <div class="sub-point">🔵 <strong>Weź MIKROFIBRĘ #2.</strong> Zwilż ją CZYSTĄ WODĄ (ma być wilgotna, nie mokra - wykręć nadmiar wody!).</div>
+                    <div class="sub-point">💧 <strong>Przetrzyj nią dokładnie WSZYSTKIE powierzchnie</strong>, które czyściłeś APC.</div>
+                    <div class="sub-point">🎯 <strong>CEL TEGO ETAPU:</strong> Usunięcie resztek detergentu (APC). Bez tego kroku APC zaschnie i stworzy lepkie, brzydkie "mazy" i smugi!</div>
+                    <div class="sub-point">⚠️ <strong>To jest różnica między profesjonalnym a amatorskim efektem!</strong> Większość osób pomija ten etap i potem narzeka na smugi.</div>
+                    <div class="sub-point">🔄 <strong>Płucz mikrofibrę #2 często w czystej wodzie</strong>, aby nie przenosić APC z miejsca na miejsce.</div>
+                </li>
+
+                <li><strong>PIELĘGNACJA - ETAP 3: Interior QD (Efekt WOW - Mikrofibra #3)</strong>
+                    <div class="sub-point">🟢 <strong>Weź MIKROFIBRĘ #3 - całkowicie SUCHĄ!</strong></div>
+                    <div class="sub-point">✨ <strong>Spryskaj ADBL Interior QD NA mikrofibrę</strong> (1-2 psiknięcia - to bardzo wydajny produkt!).</div>
+                    <div class="sub-point">🎨 <strong>Nałóż na wszystkie plastikowe powierzchnie</strong> delikatnymi, równomiernymi ruchami.</div>
+                    <div class="sub-point">🎯 <strong>Efekty Interior QD:</strong></div>
+                    <div class="sub-point" style="margin-left: 20px;">
+                        ✓ Odżywia plastik<br>
+                        ✓ Nadaje głęboki, fabryczny, MATOWY wygląd<br>
+                        ✓ Zabezpiecza antystatycznie (kurz mniej siada)<br>
+                        ✓ Maskuje drobne rysy wizualnie<br>
+                        ✓ Zabezpiecza przed UV
+                    </div>
+                    <div class="sub-point">⚠️ <strong>MNIEJ = WIĘCEJ!</strong> Zbyt dużo produktu = smugi. Nakładaj cienką warstwę.</div>
+                </li>
+
+                <li><strong>CZYSZCZENIE TAPICERKI</strong>
+                    <div class="sub-point">🧴 Użyj <strong>ADBL Bonnet</strong> (lub APC 1:20) i <strong>szczotki ADBL Textile Brush</strong>.</div>
+                    <div class="sub-point">💦 <strong>Spryskaj lekko materiał</strong> (nie zalewaj!).</div>
+                    <div class="sub-point">🪥 <strong>Wyszczotkuj delikatnie</strong> w jednym kierunku (nie koliście).</div>
+                    <div class="sub-point">🧺 <strong>Zbierz brud i wilgoć czystą, suchą mikrofibą.</strong></div>
+                    <div class="sub-point">🌬️ <strong>Pozostaw drzwi otwarte</strong> na 30-60 minut, aby tapicerka wyschła.</div>
+                </li>
+
+                <li><strong>MYCIE SZYB (Technika 2 Mikrofibr)</strong>
+                    <div class="sub-point">🪟 <strong>Spryskaj ADBL Glass Cleaner Ultra</strong> bezpośrednio na szybę (w kształcie litery Z).</div>
+                    <div class="sub-point">🧺 <strong>Weź ADBL Goofer Towel</strong> i równomiernie rozprowadź płyn po całej szybie.</div>
+                    <div class="sub-point">✨ <strong>Weź DRUGĄ, całkowicie SUCHĄ mikrofibrę</strong> i wypoleruj szybę do idealnej przejrzystości.</div>
+                    <div class="sub-point">🎯 <strong>Technika:</strong> Ruchy od góry do dołu lub na krzyż. NIE koliście!</div>
+                    <div class="sub-point">⚠️ <strong>Rób szyby na KOŃCU</strong>, aby kurz z czyszczenia wnętrza nie osiadał na czystych szybach!</div>
+                </li>
+
+                <li><strong>BAGAŻNIK</strong>
+                    <div class="sub-point">🧹 Odkurz bardzo dokładnie.</div>
+                    <div class="sub-point">🧽 Wyczyść APC (jeśli plastikowy) lub Bonnet (jeśli wykładzina).</div>
+                    <div class="sub-point">🌺 <strong>Spryskaj wykładzinę środkiem Shiny Garage No-Scent</strong> (neutralizator zapachów).</div>
+                </li>
+            </ol>
+
+            <div class="warning">
+                <strong>⚠️ PODSUMOWANIE NAJWAŻNIEJSZYCH ZASAD:</strong>
+                <ul>
+                    <li>3️⃣ Zawsze używaj TRZECH osobnych mikrofibr (APC/Woda/Interior QD)</li>
+                    <li>💦 NIGDY nie pomijaj etapu neutralizacji wodą</li>
+                    <li>🚫 NIGDY nie spryskuj elektroniki bezpośrednio</li>
+                    <li>✨ Interior QD nakładaj CIENKĄ warstwą</li>
+                    <li>🪟 Szyby myj na samym końcu</li>
+                </ul>
+            </div>
+        </div>
+
+        <div class="instruction-card">
+            <h3>Scenariusz 3: Usuwanie Wżerów i Zabezpieczenie Lakieru (Pasta AIO)</h3>
+            <p><strong>Używasz:</strong> SONAX Profiline EX 04-06, Flexipads Aplikator, 3-4 czyste mikrofibry</p>
+            <p><strong>Cel:</strong> Fizyczne usunięcie defektów lakieru (wżery, rysy, zmatowienia) i zabezpieczenie na 3-6 miesięcy.</p>
+
+            <div class="danger-zone">
+                <h4>OSTRZEŻENIA PRZED ROZPOCZĘCIEM!</h4>
+                <ul>
+                    <li>❌ <strong>NIGDY nie poleruj na słońcu lub gorącym lakierze!</strong> Pasta zaschnie i nie będzie działać!</li>
+                    <li>❌ <strong>NIGDY nie poleruj brudnego lub mokrego lakieru!</strong> Zarysowujesz bardziej!</li>
+                    <li>❌ <strong>NIGDY nie używaj za dużej ilości pasty!</strong> Więcej ≠ lepiej!</li>
+                    <li>❌ <strong>NIGDY nie pozwól paście zaschnąć na kamień!</strong> Będziesz szorować i rysujesz!</li>
+                    <li>❌ <strong>NIGDY nie poleruj zbyt długo w jednym miejscu!</strong> Możesz przegrzać i uszkodzić lakier!</li>
+                </ul>
+            </div>
+
+            <ol>
+                <li><strong>PRZYGOTOWANIE MIEJSCA PRACY</strong>
+                    <div class="sub-point">🏠 <strong>Pracuj TYLKO w cieniu lub garażu</strong> na idealnie czystym, suchym i chłodnym lakierze.</div>
+                    <div class="sub-point">🧼 <strong>Lakier MUSI być wcześniej umyty</strong> (Scenariusz 1) i całkowicie suchy.</div>
+                    <div class="sub-point">🌡️ <strong>Temperatura lakieru:</strong> Chłodny w dotyku (max 20-25°C).</div>
+                    <div class="sub-point">📐 <strong>Podziel większe elementy na sekcje robocze:</strong> np. maskę podziel na 4 ćwiartki. Pracujesz nad jedną ćwiartką naraz.</div>
+                </li>
+
+                <li><strong>APLIKACJA PASTY</strong>
+                    <div class="sub-point">🧴 <strong>Wstrząśnij dobrze butelką z SONAX EX 04-06.</strong></div>
+                    <div class="sub-point">🟡 <strong>Nałóż 3-4 małe krople</strong> (wielkości ziarnka grochu) na twardszą, ŻÓŁTĄ stronę aplikatora Flexipads.</div>
+                    <div class="sub-point">⚠️ <strong>Więcej pasty ≠ lepszy efekt!</strong> Zbyt dużo pasty = trudniej docierać i więcej smug.</div>
+                </li>
+
+                <li><strong>POLEROWANIE RĘCZNE (Najważniejszy Etap - "Mięso" Procesu)</strong>
+                    <div class="sub-point">🎨 <strong>Równomiernie rozprowadź pastę</strong> na wybranej sekcji (np. 30x30 cm).</div>
+                    <div class="sub-point">💪 <strong>Z umiarkowanym, stałym naciskiem</strong> zacznij polerować powierzchnię:</div>
+                    <div class="sub-point" style="margin-left: 20px;">
+                        1. Ruchy PROSTE (wzdłuż i w poprzek - tzw. "na krzyż")<br>
+                        2. Następnie możesz dodać ruchy KOLISTE<br>
+                        3. Zakończ znowu ruchami PROSTYMI
+                    </div>
+                    <div class="sub-point">⏱️ <strong>Pracuj NIEPRZERWANIE przez 2-3 minuty.</strong> To jest klucz do sukcesu! Musisz "wypracować" pastę.</div>
+                    <div class="sub-point">🔬 <strong>Co się dzieje podczas polerowania:</strong></div>
+                    <div class="sub-point" style="margin-left: 20px;">
+                        • Mikrościerniwo w paście fizycznie ścina uszkodzoną warstwę lakieru bezbarwnego<br>
+                        • Oleje w paście wypełniają rysy<br>
+                        • Wosk zabezpiecza lakier<br>
+                        • Pasta z mlecznej staje się prawie przezroczysta = jest "wypracowana"
+                    </div>
+                    <div class="sub-point">👀 <strong>Obserwuj pastę:</strong> Gdy stanie się przezroczysta i lakier zaczyna błyszczeć przez nią = gotowe!</div>
+                </li>
+
+                <li><strong>DOCIERANIE (Usuwanie Resztek - Mikrofibra #1)</strong>
+                    <div class="sub-point">🧺 <strong>NIE CZEKAJ, aż pasta całkowicie zaschnie!</strong> Od razu po zakończeniu polerowania weź czystą, puszystą i SUCHĄ mikrofibrę.</div>
+                    <div class="sub-point">✨ <strong>Delikatnie, BEZ NACISKU, zetrzyj resztki pasty.</strong></div>
+                    <div class="sub-point">🔄 <strong>Odwróć mikrofibrę na drugą, czystą stronę</strong> i wypoleruj powierzchnię do lustrzanego połysku.</div>
+                    <div class="sub-point">⚠️ <strong>Jeśli pasta za bardzo wyschła:</strong> Spryskaj lekko ADBL Synthetic Spray Wax i zetrzyj - to pomoże usunąć zaschniętą pastę.</div>
+                </li>
+
+                <li><strong>OCENA EFEKTU</strong>
+                    <div class="sub-point">🔦 <strong>Obejrzyj wypolerowany fragment pod światło</strong> (latarka telefonu lub lampa).</div>
+                    <div class="sub-point">✅ <strong>Wżery powinny zniknąć, lakier powinien być głęboko błyszczący.</strong></div>
+                    <div class="sub-point">🔄 Jeśli jakiś bardzo głęboki ślad pozostał, możesz powtórzyć proces (ale max 2 razy w tym samym miejscu!).</div>
+                    <div class="sub-point">➡️ <strong>Przejdź do kolejnej sekcji</strong> i powtarzaj kroki, aż cały element będzie gotowy.</div>
+                </li>
+            </ol>
+
+            <div class="pro-tip">
+                <h4>EFEKTY PASTY SONAX EX 04-06 (All-In-One)</h4>
+                <p><strong>Po tym procesie lakier jest już:</strong></p>
+                <ul style="list-style: none; padding-left: 0;">
+                    <li>✅ <strong>Czysty</strong> - usunięte zanieczyszczenia</li>
+                    <li>✅ <strong>Wypolerowany</strong> - usunięte rysy i wżery</li>
+                    <li>✅ <strong>Zabezpieczony</strong> - nałożona warstwa wosku (3-6 miesięcy ochrony)</li>
+                    <li>✅ <strong>Hydrofobowy</strong> - woda spływa kulkami</li>
+                </ul>
+                <p><strong>Nie musisz od razu nakładać dodatkowego wosku!</strong> Możesz teraz tylko utrzymywać efekt przy pomocy ADBL Synthetic Spray Wax (Scenariusz 4).</p>
+            </div>
+
+            <div class="warning">
+                <strong>⚠️ PODSUMOWANIE NAJWAŻNIEJSZYCH ZASAD:</strong>
+                <ul>
+                    <li>🌡️ Tylko na chłodnym lakierze w cieniu</li>
+                    <li>🧼 Lakier musi być idealnie czysty i suchy</li>
+                    <li>⏱️ Poleruj 2-3 minuty nieprzerwanie</li>
+                    <li>🧺 Docieraj, zanim pasta wyschnie</li>
+                    <li>🔄 Max 2 powtórzenia w tym samym miejscu</li>
+                </ul>
+            </div>
+        </div>
+
+        <div class="instruction-card">
+            <h3>Scenariusz 4: Bieżąca Pielęgnacja (Quick Detailer - System 2 Mikrofibr)</h3>
+            <p><strong>Używasz:</strong> ADBL Synthetic Spray Wax (SSW), <span class="highlight">2 osobne mikrofibry</span></p>
+            <p><strong>Cel:</strong> Szybkie odświeżenie wyglądu lakieru po każdym myciu. Podbicie połysku, zwiększenie śliskości i przedłużenie ochrony.</p>
+
+            <div class="danger-zone">
+                <h4>NAJCZĘSTSZE BŁĘDY Z QUICK DETAILEREM!</h4>
+                <ul>
+                    <li>❌ <strong>Używanie na słońcu/gorącym lakierze</strong> - produkt wysycha błyskawicznie = smugi!</li>
+                    <li>❌ <strong>Używanie JEDNEJ mikrofibry</strong> - pierwsza robi się mokra i tylko rozmazuje!</li>
+                    <li>❌ <strong>Aplikacja na brudny lakier</strong> - roznosisz brud i rysujesz!</li>
+                    <li>❌ <strong>Za dużo produktu naraz</strong> - trudniej docierać, więcej smug!</li>
+                    <li>❌ <strong>Przecieranie zaschniętego produktu</strong> - tworzysz smugi, których nie usuniesz!</li>
+                </ul>
+            </div>
+
+            <div class="pro-tip">
+                <h4>DLACZEGO 2 MIKROFIBRY?</h4>
+                <p><strong>To jest KLUCZ do efektu bez smug:</strong></p>
+                <ul style="list-style: none; padding-left: 0;">
+                    <li>🔴 <strong>MIKROFIBRA #1 - "Aplikacja"</strong> - do nakładania i rozprowadzania produktu (robi się wilgotna)</li>
+                    <li>🔵 <strong>MIKROFIBRA #2 - "Docieranie"</strong> - SUCHA, do polerowania do blasku (usuwa smugi)</li>
+                </ul>
+                <p><strong>⚠️ Jeśli użyjesz jednej - będziesz tylko rozmazywać smugi!</strong></p>
+            </div>
+
+            <ol>
+                <li><strong>PRZYGOTOWANIE</strong>
+                    <div class="sub-point">🧼 <strong>Lakier MUSI być czysty i całkowicie suchy.</strong> Quick Detailer NIE zastępuje mycia!</div>
+                    <div class="sub-point">🌥️ <strong>Pracuj w cieniu.</strong> Na słońcu produkt wysycha w 5 sekund = smugi nie do usunięcia.</div>
+                    <div class="sub-point">🌡️ <strong>Lakier powinien być chłodny w dotyku.</strong></div>
+                    <div class="sub-point">🧺 <strong>Przygotuj 2 czyste, puszyste mikrofibry.</strong></div>
+                </li>
+
+                <li><strong>APLIKACJA (Element po Elemencie)</strong>
+                    <div class="sub-point">🎯 <strong>Pracuj nad jednym małym elementem naraz</strong> (np. jedna połowa maski, jedno drzwi).</div>
+                    <div class="sub-point">💨 <strong>Nanieś 1-2 "psiknięcia" ADBL Synthetic Spray Wax</strong> bezpośrednio na element.</div>
+                    <div class="sub-point">⚠️ <strong>To BARDZO wydajny produkt!</strong> Nie "zalewaj" lakieru - mniej = więcej!</div>
+                </li>
+
+                <li><strong>ROZPROWADZENIE (Mikrofibra #1)</strong>
+                    <div class="sub-point">🔴 <strong>Weź MIKROFIBRĘ #1 (do aplikacji).</strong></div>
+                    <div class="sub-point">✋ <strong>Ruchami prostymi równomiernie rozprowadź produkt</strong> po całej powierzchni elementu.</div>
+                    <div class="sub-point">🌫️ <strong>Powinieneś zobaczyć lekką, lekko tłustą mgiełkę</strong> na lakierze - to prawidłowo!</div>
+                    <div class="sub-point">⏱️ <strong>NIE CZEKAJ!</strong> Natychmiast przejdź do następnego kroku!</div>
+                </li>
+
+                <li><strong>DOCIERANIE DO POŁYSKU (Mikrofibra #2 - Kluczowy Moment!)</strong>
+                    <div class="sub-point">🔵 <strong>Weź MIKROFIBRĘ #2 - całkowicie SUCHĄ i czystą!</strong></div>
+                    <div class="sub-point">✨ <strong>Delikatnie, bez nacisku, wypoleruj powierzchnię</strong> do momentu, aż znikną wszystkie smugi.</div>
+                    <div class="sub-point">🎯 <strong>Lakier powinien stać się idealnie śliski i błyszczący</strong> - jakby pokryty warstwą szkła.</div>
+                    <div class="sub-point">🔄 <strong>Często odwracaj mikrofibrę #2 na suchą stronę.</strong> Gdy jest mokra, przestaje docierać i zaczyna rozmazywać.</div>
+                    <div class="sub-point">👀 <strong>Sprawdź pod kątem pod światło</strong> - nie powinno być żadnych smug, zacieków, matowych plam.</div>
+                </li>
+
+                <li><strong>POWTÓRZENIE</strong>
+                    <div class="sub-point">➡️ <strong>Przejdź do kolejnego elementu</strong> i powtarzaj kroki 2-4.</div>
+                    <div class="sub-point">🔄 <strong>Zmieniaj mikrofibry, gdy:</strong></div>
+                    <div class="sub-point" style="margin-left: 20px;">
+                        • Mikrofibra #1 jest bardzo mokra - weź świeżą<br>
+                        • Mikrofibra #2 jest mokra i nie dociera - weź świeżą lub odwróć
+                    </div>
+                </li>
+            </ol>
+
+            <div class="pro-tip">
+                <h4>KIEDY STOSOWAĆ QUICK DETAILER?</h4>
+                <ul style="list-style: none; padding-left: 0;">
+                    <li>✅ <strong>Po każdym myciu</strong> - odświeża i przedłuża ochronę</li>
+                    <li>✅ <strong>Co 1-2 tygodnie</strong> - nawet bez mycia (ale tylko na czysty lakier!)</li>
+                    <li>✅ <strong>Po deszczu</strong> - usuwa plamy po wodzie i przywraca hydrofobowość</li>
+                    <li>✅ <strong>Przed pokazami/spotkaniami</strong> - lakier wygląda jak nowy!</li>
+                </ul>
+            </div>
+
+            <div class="warning">
+                <strong>⚠️ PODSUMOWANIE NAJWAŻNIEJSZYCH ZASAD:</strong>
+                <ul>
+                    <li>🌥️ NIGDY na słońcu lub gorącym lakierze</li>
+                    <li>🧺 Zawsze 2 osobne mikrofibry (aplikacja/docieranie)</li>
+                    <li>💨 Mniej produktu = łatwiej docierać</li>
+                    <li>⏱️ Natychmiast docieraj, nie czekaj</li>
+                    <li>🔄 Zmieniaj stronę mikrofibry na suchą</li>
+                </ul>
+            </div>
+        </div>
+
+        <footer>
+            <p><strong>🎉 Gratulacje! Znasz już wszystkie tajniki profesjonalnej pielęgnacji!</strong></p>
+            <p>Zapisz ten plik i wracaj, kiedy tylko potrzebujesz. Pamiętaj: cierpliwość i dbałość o detale = lakier bez rys! 🚗✨</p>
+            <p style="margin-top: 15px; font-size: 0.9rem; color: #95a5a6;">
+                💾 Zapisz tę stronę (Ctrl+D) | 📱 Dodaj do ekranu głównego telefonu | 🖨️ Wydrukuj i trzymaj w garażu
+            </p>
+        </footer>
+    </div>
+
+    <script>
+        const themeToggle = document.getElementById('theme-toggle');
+        const body = document.body;
+        
+        if (localStorage.getItem('theme') === 'dark') { 
+            body.classList.add('dark-mode'); 
+        }
+        
+        themeToggle.addEventListener('click', () => {
+            body.classList.toggle('dark-mode');
+            if (body.classList.contains('dark-mode')) {
+                localStorage.setItem('theme', 'dark');
+            } else {
+                localStorage.setItem('theme', 'light');
+            }
+        });
+    </script>
+
+</body>
+</html>

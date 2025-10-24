@@ -1,0 +1,313 @@
+<!DOCTYPE html>
+<html lang="pl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Kompletny Poradnik Gracza</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <header>
+        <h1>Kompletny Poradnik Gracza</h1>
+        <p>Wszystko, co musisz wiedzieć, aby bezpiecznie i świadomie pobierać gry. Kompletna wiedza w jednym miejscu.</p>
+    </header>
+
+    <div class="guide-content">
+        <a href="index.html#Gry" class="back-button">← Wróć do Głównego Menu</a>
+
+        <!-- SPIS TREŚCI -->
+        <div class="info-box" id="spis-tresci">
+            <h3>Spis Treści</h3>
+            <ul class="link-list" style="list-style-type: none; padding-left: 0;">
+                <li><a href="#rozdzial1">Rozdział 1: Przygotowanie i Podstawy Bezpieczeństwa</a></li>
+                <li><a href="#rozdzial2">Rozdział 2: Narzędzia i Źródła Informacji</a></li>
+                <li><a href="#rozdzial3">Rozdział 3: Skrzynka z Narzędziami</a></li>
+                <li><a href="#rozdzial4">Rozdział 4: Trainery (Cheaty)</a></li>
+                <li><a href="#rozdzial5">Rozdział 5: Czerwona Lista (Niezaufane Źródła)</a></li>
+                <li><a href="#rozdzial6">Rozdział 6: Emulacja i ROM-y (Narzędzia i Zasoby)</a></li>
+            </ul>
+        </div>
+
+        <!-- =================================================================== -->
+        <!-- ROZDZIAŁ 1: PRZYGOTOWANIE I PODSTAWY BEZPIECZEŃSTWA -->
+        <!-- =================================================================== -->
+        <h2 id="rozdzial1" style="text-align: center; margin-top: 40px; margin-bottom: 30px;">Rozdział 1: Przygotowanie i Podstawy Bezpieczeństwa</h2>
+
+        <div class="info-box">
+            <h3>Złote Zasady Bezpieczeństwa</h3>
+            <p>Zanim cokolwiek pobierzesz, poznaj dwie najważniejsze zasady, które zapewnią Ci spokój ducha i ochronią przed 99% zagrożeń.</p>
+            <ul class="link-list" style="margin-top: 15px;">
+                <li><a href="https://ublockorigin.com/" target="_blank"><strong>Zainstaluj uBlock Origin</strong> — Najlepszy bloker reklam. To absolutna podstawa. Blokuje złośliwe reklamy, fałszywe przyciski pobierania i skrypty śledzące.</a></li>
+                <li><a href="https://www.privacyguides.org/en/vpn/" target="_blank"><strong>Zabezpiecz torrenty przez VPN (Zalecane)</strong> — W krajach jak Niemcy czy USA, pobieranie bez VPN może prowadzić do wysokich kar. W Polsce ryzyko jest znacznie niższe, ale VPN to jedyna metoda na 100% prywatności podczas korzystania z sieci P2P.</a></li>
+            </ul>
+        </div>
+        
+        <div class="info-box" style="border-left-color: var(--secondary-accent);">
+            <h3>Wymagane Komponenty Systemowe</h3>
+            <p>Niezbędne, aby gry (zarówno legalne, jak i pirackie) w ogóle się uruchamiały i nie powodowały błędów. Zainstaluj wszystko z tej listy.</p>
+            <ul class="link-list" style="margin-top: 15px;">
+                <li><a href="https://www.microsoft.com/en-us/download/details.aspx?id=35" target="_blank">DirectX End-User Runtimes</a></li>
+                <li><a href="https://github.com/abbodi1406/vcredist/releases/latest" target="_blank">Visual C++ Redistributable AIO (Wszystko w jednym)</a></li>
+                <li><a href="https://dotnet.microsoft.com/en-us/download/dotnet" target="_blank">.NET Framework / .NET Core</a></li>
+                <li><a href="https://www.microsoft.com/en-us/download/details.aspx?id=20914" target="_blank">XNA Framework</a></li>
+                <li><a href="https://www.7-zip.org/" target="_blank">7-Zip (do wypakowywania archiwów .7z)</a></li>
+                <li><a href="https://www.win-rar.com/" target="_blank">WinRAR (lepsza kompatybilność z wieloczęściowymi archiwami .rar)</a></li>
+            </ul>
+        </div>
+        
+        <h3>Niezbędne Rozszerzenia Przeglądarki</h3>
+        <p>Te rozszerzenia znacząco poprawią Twoje bezpieczeństwo i wygodę podczas przeglądania stron z linkami.</p>
+        <div class="tool-grid">
+            <a href="https://ublockorigin.com/" class="tool-card" target="_blank"><h3>uBlock Origin</h3><p>Najlepszy bloker reklam. Absolutna podstawa bezpiecznego internetu.</p></a>
+            <a href="https://violentmonkey.github.io/" class="tool-card" target="_blank"><h3>Violentmonkey</h3><p>Manager skryptów użytkownika. Potrzebny do instalacji kolejnych dodatków.</p></a>
+            <a href="https://codeberg.org/Amm0ni4/bypass-all-shortlinks-debloated/" class="tool-card" target="_blank"><h3>Bypass All Shortlinks</h3><p>Skrypt do Violentmonkey, który automatycznie omija większość irytujących skracaczy linków (np. ad.fly).</p></a>
+            <a href="https://www.localcdn.org/" class="tool-card" target="_blank"><h3>LocalCDN</h3><p>Emuluje popularne biblioteki, zapobiegając śledzeniu przez duże firmy i potencjalnie przyspieszając ładowanie stron.</p></a>
+        </div>
+
+        <h3>Słowniczek Podstawowych Pojęć</h3>
+        <p>Zrozumienie tych terminów to klucz do świadomego pobierania. Będziesz wiedział, czego szukasz i co dokładnie pobierasz.</p>
+        <div class="tool-grid">
+            <div class="tool-card"><h3>Repack</h3><p>Mocno skompresowana wersja gry. Mniejszy rozmiar pobierania, ale instalacja na komputerze trwa znacznie dłużej.</p></div>
+            <div class="tool-card"><h3>Scene Release</h3><p>Wersja gry "złamana" przez profesjonalną grupę (np. CODEX, EMPRESS). Grupy te nie mają stron internetowych!</p></div>
+            <div class="tool-card"><h3>DDL (Direct Download)</h3><p>Pobieranie pliku bezpośrednio z serwera przez przeglądarkę. Prostsze i nie wymaga VPN, ale linki mogą wygasać.</p></div>
+            <div class="tool-card"><h3>Torrent (P2P)</h3><p>Pobieranie pliku fragmentami od innych użytkowników (peer-to-peer). Szybsze dla popularnych plików, ale wymaga klienta (np. qBittorrent) i VPN.</p></div>
+        </div>
+
+        <h3>Torrenty czy Direct Download (DDL)? Co Wybrać?</h3>
+        <div class="tool-grid">
+            <div class="tool-card" style="border-color: var(--primary-accent);"><h3 style="color: var(--primary-accent);">Torrenty</h3><p><strong>Zalety:</strong><br>✓ Zazwyczaj szybsze przy popularnych grach<br>✓ Linki praktycznie nigdy nie wygasają</p><p style="margin-top: 10px;"><strong>Wady:</strong><br>✗ <strong>Wymagają VPN dla 100% bezpieczeństwa</strong><br>✗ Wymagają instalacji dodatkowego programu (klienta)</p></div>
+            <div class="tool-card" style="border-color: var(--secondary-accent);"><h3 style="color: var(--secondary-accent);">Direct Download</h3><p><strong>Zalety:</strong><br>✓ <strong>Nie wymagają VPN</strong><br>✓ Proste w obsłudze, pobierasz jak zwykły plik</p><p style="margin-top: 10px;"><strong>Wady:</strong><br>✗ Często wolniejsze limity prędkości<br>✗ Linki do plików mogą zostać usunięte</p></div>
+        </div>
+
+        <!-- =================================================================== -->
+        <!-- ROZDZIAŁ 2: NARZĘDZIA I ŹRÓDŁA INFORMACJI -->
+        <!-- =================================================================== -->
+        <h2 id="rozdzial2" style="text-align: center; margin-top: 40px; margin-bottom: 30px;">Rozdział 2: Narzędzia i Źródła Informacji</h2>
+
+        <div class="info-box">
+            <h3>Polecane Klienty Torrent</h3>
+            <p>Aby pobierać pliki torrent, potrzebujesz jednego z tych programów. <strong>qBittorrent</strong> jest najczęściej polecany ze względu na brak reklam i otwarty kod źródłowy.</p>
+            <ul class="link-list" style="margin-top: 15px;">
+                <li><a href="https://www.qbittorrent.org/download.php" target="_blank">qBittorrent</a></li>
+                <li><a href="https://transmissionbt.com/download/" target="_blank">Transmission</a></li>
+                <li><a href="http://www.vuze.com/" target="_blank">Vuze</a></li>
+                <li><a href="https://www.biglybt.com/download/" target="_blank">BiglyBT</a></li>
+                <li><a href="https://dev.deluge-torrent.org/wiki/Download" target="_blank">Deluge</a></li>
+                <li><a href="https://picotorrent.org/download/" target="_blank">PicoTorrent</a> (bardzo lekki)</li>
+                <li><a href="https://tixati.com/" target="_blank">Tixati</a></li>
+                <li><a href="https://github.com/proninyaroslav/libretorrent/releases/latest" target="_blank">LibreTorrent (na Androida)</a></li>
+            </ul>
+        </div>
+
+        <div class="info-box" style="border-left-color: var(--secondary-accent);">
+            <h3>Polecane Menedżery Pobierania DDL</h3>
+            <p>Te programy pomagają zarządzać pobieraniem z serwisów DDL, często zwiększając prędkość i pozwalając na wznawianie przerwanych pobierań.</p>
+            <ul class="link-list" style="margin-top: 15px;">
+                <li><a href="http://jdownloader.org/jdownloader2" target="_blank">JDownloader2</a> (najpopularniejszy, wspiera setki stron)</li>
+                <li><a href="https://www.internetdownloadmanager.com/download.html" target="_blank">Internet Download Manager (IDM)</a> (płatny, ale bardzo ceniony)</li>
+                <li><a href="https://motrix.app/" target="_blank">Motrix</a> (nowoczesny, wspiera też torrenty)</li>
+                <li><a href="https://www.freedownloadmanager.org/" target="_blank">FreeDownloadManager</a> (darmowy, wspiera też torrenty)</li>
+                <li><a href="https://pyload.net/" target="_blank">pyLoad</a></li>
+                <li><a href="https://subhra74.github.io/xdm/" target="_blank">Xtreme Download Manager</a></li>
+            </ul>
+        </div>
+
+        <div class="info-box">
+            <h3>Sieci 'Scene' (Status Cracków)</h3>
+            <p>Te strony <strong>nie oferują pobierania!</strong> Służą wyłącznie do sprawdzania, czy dana gra została już "złamana" przez grupy scenowe i jakie wydania są dostępne.</p>
+            <ul class="link-list" style="margin-top: 15px;">
+                <li><a href="https://www.reddit.com/r/CrackWatch" target="_blank">r/CrackWatch</a> (najpopularniejsze źródło newsów)</li>
+                <li><a href="https://xrel.to/" target="_blank">xREL</a></li>
+                <li><a href="https://predb.me/?cats=games-pc" target="_blank">predb.me</a></li>
+                <li><a href="https://www.srrdb.com/" target="_blank">srrDB</a></li>
+                <li><a href="https://predb.de/" target="_blank">predb.de</a></li>
+                <li><a href="https://predb.org/" target="_blank">predb.org</a></li>
+                <li><a href="https://predb.pw/" target="_blank">predb.pw</a></li>
+                <li><a href="https://scene-rls.net/releases/index.php" target="_blank">Scene-RLS</a></li>
+                <li><a href="https://www.reddit.com/r/RepackWatchers" target="_blank">r/RepackWatchers</a> (dla repaków)</li>
+                <li><a href="https://www.reddit.com/r/RepackWorld" target="_blank">r/RepackWorld</a> (dla repaków)</li>
+            </ul>
+        </div>
+
+        <div class="info-box" style="border-left-color: var(--secondary-accent);">
+            <h3>Społeczności (Subreddity)</h3>
+            <p>Miejsca, gdzie znajdziesz pomoc, poradniki i dyskusje na tematy związane z grami.</p>
+            <ul class="link-list" style="margin-top: 15px;">
+                <li><a href="https://www.reddit.com/r/PiratedGames/wiki/faq/" target="_blank">r/PiratedGames FAQ</a> (kopalnia wiedzy)</li>
+                <li><a href="https://www.reddit.com/r/Piracy" target="_blank">r/Piracy</a> (ogólna tematyka piractwa)</li>
+                <li><a href="https://www.reddit.com/r/CrackSupport" target="_blank">r/CrackSupport</a> (pomoc techniczna)</li>
+                <li><a href="https://www.reddit.com/r/DenuvoSanctuary" target="_blank">r/DenuvoSanctuary</a> (dyskusje o Denuvo)</li>
+                <li><a href="https://reddit.com/r/FREEMEDIAHECKYEAH" target="_blank">r/FREEMEDIAHECKYEAH</a> (ogromny zbiór linków do wszystkiego)</li>
+                <li><a href="https://www.reddit.com/r/LinuxCrackSupport" target="_blank">r/LinuxCrackSupport</a> (dla użytkowników Linuxa)</li>
+                <li><a href="https://reddit.com/r/QuestPiracy" target="_blank">r/QuestPiracy</a> (dla VR)</li>
+                <li><a href="https://www.reddit.com/r/SteamDeckPirates/" target="_blank">r/SteamDeckPirates</a> (dla posiadaczy Steam Deck)</li>
+                <li><a href="https://www.reddit.com/r/SwitchPirates/" target="_blank">r/SwitchPirates</a> (dla posiadaczy Switcha)</li>
+            </ul>
+        </div>
+
+        <div class="info-box">
+            <h3>Wyszukiwarki Gier</h3>
+            <p>Te narzędzia przeszukują wiele stron DDL i torrent w poszukiwaniu linków do gier.</p>
+            <ul class="link-list" style="margin-top: 15px;">
+                <li><a href="https://rezi.one/" target="_blank">Rezi</a> (Wyszukiwarka DDL)</li>
+                <li><a href="https://cse.google.com/cse?cx=20c2a3e5f702049aa" target="_blank">Custom Google Search</a> (Specjalna wyszukiwarka Google)</li>
+                <li><a href="https://github.com/FrenchGithubUser/Hatt" target="_blank">Hatt</a> (Aplikacja desktopowa, nierozwijana)</li>
+            </ul>
+        </div>
+
+        <!-- =================================================================== -->
+        <!-- ROZDZIAŁ 3: SKRZYNKA Z NARZĘDZIAMI -->
+        <!-- =================================================================== -->
+        <h2 id="rozdzial3" style="text-align: center; margin-top: 40px; margin-bottom: 30px;">Rozdział 3: Skrzynka z Narzędziami</h2>
+        
+        <h3>Kluczowe Zbiory Narzędzi</h3>
+        <div class="tool-grid">
+            <a href="https://cs.rin.ru/forum/viewtopic.php?f=10&t=65887" class="tool-card" target="_blank"><h3>RIN SteamInternals</h3><p>Potężna kolekcja narzędzi związanych ze Steam. Absolutna podstawa dla zaawansowanych.</p></a>
+            <a href="https://ripped.guide/PC-Software/Games/" class="tool-card" target="_blank"><h3>Ripped.guide - Games</h3><p>Obszerny przewodnik i zbiór linków do narzędzi związanych z grami.</p></a>
+        </div>
+
+        <h3>Emulatory & Omijanie Zabezpieczeń</h3>
+        <div class="tool-grid">
+            <a href="https://github.com/atom0s/Steamless/releases" class="tool-card" target="_blank"><h3>Steamless</h3><p>Usuwa podstawową warstwę zabezpieczeń (SteamStub DRM) z plików .exe.</p></a>
+            <a href="https://cs.rin.ru/forum/viewtopic.php?f=29&t=91627" class="tool-card" target="_blank"><h3>Goldberg Steam Emulator</h3><p>Najpopularniejszy emulator omijający podstawowe zabezpieczenia Steam DRM.</p></a>
+            <a href="https://github.com/BigBoiCJ/SteamAutoCracker" class="tool-card" target="_blank"><h3>SteamAutoCracker</h3><p>Skrypt, który automatyzuje proces "crackowania" gier przy użyciu emulatorów.</p></a>
+            <a href="https://cs.rin.ru/forum/viewtopic.php?f=29&t=62935" class="tool-card" target="_blank"><h3>SmartSteamEmu</h3><p>Alternatywny emulator klienta Steam z dodatkowymi funkcjami.</p></a>
+            <a href="https://cs.rin.ru/forum/viewtopic.php?f=29&t=105551" class="tool-card" target="_blank"><h3>Nemirtingas Epic Emulator</h3><p>Emulator klienta Epic Games.</p></a>
+            <a href="http://cs.rin.ru/forum/viewtopic.php?f=29&t=67197" class="tool-card" target="_blank"><h3>LumaPlay (dla Uplay)</h3><p>Emulator klienta Uplay/Ubisoft Connect.</p></a>
+        </div>
+
+        <h3>Odblokowywanie DLC</h3>
+        <div class="tool-grid">
+            <a href="https://cs.rin.ru/forum/viewtopic.php?p=2013521#p2013521" class="tool-card" target="_blank"><h3>Auto CreamAPI</h3><p>Automatycznie odblokowuje spiracone DLC w legalnie posiadanych grach na Steam.</p></a>
+            <a href="https://cs.rin.ru/forum/viewtopic.php?f=29&t=70576" class="tool-card" target="_blank"><h3>CreamAPI / SmokeAPI</h3><p>Ręczna metoda odblokowywania DLC w grach na Steam.</p></a>
+            <a href="https://cs.rin.ru/forum/viewtopic.php?t=111520" class="tool-card" target="_blank"><h3>DreamAPI</h3><p>Odblokowuje DLC dla legalnie posiadanych gier na Epic Games oraz EA App.</p></a>
+            <a href="https://cs.rin.ru/forum/viewtopic.php?f=20&t=104412" class="tool-card" target="_blank"><h3>Origin / EA App DLC Unlocker</h3><p>Odblokowuje posiadane DLC w grach na platformie Origin / EA App.</p></a>
+            <a href="https://cs.rin.ru/forum/viewtopic.php?f=29&t=111874" class="tool-card" target="_blank"><h3>Uplay R1/R2 Unlocker</h3><p>Odblokowuje posiadane DLC w grach na platformie Ubisoft Connect.</p></a>
+            <a href="https://cs.rin.ru/forum/viewtopic.php?f=29&t=106474" class="tool-card" target="_blank"><h3>ScreamAPI</h3><p>Alternatywny odblokowywacz DLC dla gier z Epic Games Store.</p></a>
+        </div>
+
+        <h3>Narzędzia Sieciowe & Multiplayer</h3>
+        <div class="tool-grid">
+            <a href="https://parsec.app/" class="tool-card" target="_blank"><h3>Parsec</h3><p>Umożliwia granie w lokalne gry multiplayer (kanapowy co-op) ze znajomymi przez internet.</p></a>
+            <a href="https://www.radmin-vpn.com/" class="tool-card" target="_blank"><h3>RadminVPN / Hamachi</h3><p>Tworzą wirtualną sieć LAN, co pozwala na grę w starych grach "po sieci lokalnej".</p></a>
+            <a href="https://plutonium.pw/" class="tool-card" target="_blank"><h3>Plutonium</h3><p>Dedykowane serwery i klient do gry multiplayer w starsze części Call of Duty.</p></a>
+        </div>
+
+        <h3>Modyfikacje, Dodatki i Inne</h3>
+        <div class="tool-grid">
+            <a href="https://ggntw.com/steam" class="tool-card" target="_blank"><h3>GGNTW (Steam Workshop)</h3><p>Prosta strona do pobierania modyfikacji z Warsztatu Steam.</p></a>
+            <a href="http://steamworkshop.download/" class="tool-card" target="_blank"><h3>SteamWorkshop.download</h3><p>Alternatywna strona do pobierania zawartości z Warsztatu Steam.</p></a>
+            <a href="https://github.com/gibbed/SteamAchievementManager" class="tool-card" target="_blank"><h3>Steam Achievement Manager</h3><p>Proste narzędzie do zarządzania (dodawania/usuwania) osiągnięć na koncie Steam.</p></a>
+            <a href="https://cs.rin.ru/forum/viewtopic.php?f=29&t=102519" class="tool-card" target="_blank"><h3>Sims 4 Updater</h3><p>Dedykowane narzędzie do aktualizowania spiraconej wersji gry The Sims 4.</p></a>
+            <a href="https://www.luckypatchers.com/" class="tool-card" target="_blank"><h3>Lucky Patcher (Android)</h3><p>Potężne narzędzie do modyfikacji i "patchowania" aplikacji na Androidzie (działa najlepiej z rootem).</p></a>
+            <a href="https://wincdemu.sysprogs.org/" class="tool-card" target="_blank"><h3>WinCDEmu</h3><p>Lekkie narzędzie do montowania obrazów płyt (.ISO, .CUE).</p></a>
+        </div>
+
+        <!-- =================================================================== -->
+        <!-- ROZDZIAŁ 4: TRAINERY (CHEATY) -->
+        <!-- =================================================================== -->
+        <h2 id="rozdzial4" style="text-align: center; margin-top: 40px; margin-bottom: 30px;">Rozdział 4: Trainery (Cheaty)</h2>
+
+        <div class="warning-box">
+            <h3 style="color: var(--warning-color);">Uwaga!</h3>
+            <p>Trainery i cheaty są przeznaczone <strong>wyłącznie do gier single-player</strong>. Używanie ich w grach online jest nieuczciwe i prawie na pewno skończy się permanentnym banem na Twoje konto.</p>
+        </div>
+
+        <div class="tool-grid">
+            <a href="https://flingtrainer.com/" class="tool-card" target="_blank"><h3>FLiNG Trainers</h3><p>Jedne z najpopularniejszych i najbardziej zaufanych trainerów do gier.</p></a>
+            <a href="https://www.wemod.com/" class="tool-card" target="_blank"><h3>WeMod</h3><p>Popularna aplikacja "wszystko w jednym" z interfejsem do zarządzania cheatami w setkach gier.</p></a>
+            <a href="https://fearlessrevolution.com/" class="tool-card" target="_blank"><h3>Fearless Revolution</h3><p>Ogromna baza tabel do programu Cheat Engine, pozwalająca na zaawansowaną modyfikację gier.</p></a>
+            <a href="https://mrantifun.net/" class="tool-card" target="_blank"><h3>MrAntiFun</h3><p>Kolejny zaufany twórca trainerów, często współpracujący z WeMod.</p></a>
+            <a href="https://gamecopyworld.com/games/index.php" class="tool-card" target="_blank"><h3>GameCopyWorld</h3><p>Legendarna strona, która oprócz trainerów oferuje też same cracki (NoCD) i solucje do gier.</p></a>
+        </div>
+
+        <!-- =================================================================== -->
+        <!-- ROZDZIAŁ 5: CZERWONA LISTA -->
+        <!-- =================================================================== -->
+        <h2 id="rozdzial5" style="text-align: center; margin-top: 40px; margin-bottom: 30px;">Rozdział 5: Czerwona Lista</h2>
+
+        <div class="warning-box">
+            <h3>Unikaj Tych Stron, Programów i Uploaderów!</h3>
+            <p>Poniższe źródła są znane z dystrybucji złośliwego oprogramowania (malware), koparek kryptowalut, dołączania własnych DRM i nieuczciwych praktyk. <b>NIGDY Z NICH NIE KORZYSTAJ dla własnego bezpieczeństwa.</b></p>
+            
+            <h4 style="margin-top: 20px;">Wyjątkowo Niebezpieczne Źródła:</h4>
+            <ul>
+                <li><strong>IGG Games / PCGamesTorrents</strong> (malware, własne DRM, doxxing)</li>
+                <li><strong>SteamUnlocked / GOG Unlocked / ROMs Unlocked</strong> (przekierowania, pliki od IGG)</li>
+                <li><strong>The Pirate Bay / TPB</strong> (wysokie ryzyko malware od każdego uploadera)</li>
+                <li><strong>Wszystkie strony z nazwą grupy scenowej w URL</strong> (np. skidrowgames, codex-games, cpy-games itp. Grupy scenowe NIE MAJĄ stron!)</li>
+                <li><strong>Wszystkie strony podszywające się pod RARBG</strong> (oryginalna strona została zamknięta)</li>
+                <li><strong>OceanOfGames / OceanOfAPKs</strong> (wysokie ryzyko malware)</li>
+                <li><strong>TLauncher (Minecraft)</strong> (potwierdzone spyware)</li>
+            </ul>
+
+            <h4 style="margin-top: 20px;">Niezaufane Oprogramowanie:</h4>
+            <ul>
+                <li><strong>BitTorrent / µTorrent</strong> (reklamy, trackery, koparki krypto. Używaj qBittorrent)</li>
+                <li><strong>Jakikolwiek "spiracony" program VPN</strong> (to na 100% malware)</li>
+                <li><strong>Avast / CCleaner</strong> (sprzedają dane użytkowników)</li>
+                <li><strong>Bitlord</strong> (ryzyko malware)</li>
+            </ul>
+
+            <h4 style="margin-top: 20px;">Inne Niezaufane Strony i Uploaderzy:</h4>
+            <ul>
+                <li>AimHaven</li>
+                <li>Apunkagames</li>
+                <li>BBRepacks (fałszywe repacki BlackBox)</li>
+                <li>Chovka / Repack.Info</li>
+                <li>Corepack</li>
+                <li>Cracked-Games</li>
+                <li>CrackingPatching</li>
+                <li>Crohasit / Crotorrents</li>
+                <li>FileCR</li>
+                <li>Game3rb / MrPcGamer</li>
+                <li>GameFabrique</li>
+                <li>kLauncher (Minecraft)</li>
+                <li>Nexus Games / WorldOfPCGames</li>
+                <li>nosTEAM (koparki BTC)</li>
+                <li>PiviGames (pobiera z niezaufanych źródeł)</li>
+                <li>RepackGames (kradzione i źle oznaczone releasy)</li>
+                <li>Seyter/Qoob (koparki BTC)</li>
+                <li>VitaminX (koparki BTC)</li>
+                <li>xGIROx (koparki BTC)</li>
+                <li><strong>I generalnie wszystko, co znajdziesz w Google szukając "darmowe gry" itp.</strong> - Google usuwa prawdziwe strony, a promuje fałszywe.</li>
+            </ul>
+        </div>
+
+<!-- =================================================================== -->
+        <!-- ROZDZIAŁ 6: EMULACJA I ROMY (ZAAWANSOWANE NARZĘDZIA) -->
+        <!-- =================================================================== -->
+        <h2 id="rozdzial6" style="text-align: center; margin-top: 40px; margin-bottom: 30px;">Rozdział 6: Emulacja i ROM-y (Narzędzia i Zasoby)</h2>
+
+        <div class="info-box">
+            <h3>Kluczowe Zasoby (Wiki i Pliki BIOS)</h3>
+            <p>Podstawowe miejsca, od których należy zacząć przygodę z emulacją. Znajdziesz tu niezbędne pliki i ogromną bazę wiedzy o każdym emulatorze.</p>
+        </div>
+        <div class="tool-grid">
+            <a href="https://emulation.gametechwiki.com/index.php/Main_Page" class="tool-card" target="_blank"><h3>Emulation Wiki</h3><p>Największa encyklopedia emulatorów. Opisy, porównania, linki i poradniki.</p></a>
+            <a href="https://emulation.gametechwiki.com/index.php/Emulator_files" class="tool-card" target="_blank"><h3>Pliki BIOS</h3><p>Zbiór linków do niezbędnych plików BIOS, wymaganych przez wiele emulatorów do uruchomienia gier.</p></a>
+            <a href="https://retroachievements.org/" class="tool-card" target="_blank"><h3>RetroAchievements</h3><p>Platforma dodająca system osiągnięć (achievementów) do klasycznych gier uruchamianych na emulatorach.</p></a>
+        </div>
+
+        <h3>Zarządzanie Biblioteką Gier i Modyfikacje</h3>
+        <p>Narzędzia, które pomogą Ci uporządkować kolekcję ROM-ów, pobrać okładki, a także znaleźć tłumaczenia i modyfikacje do klasycznych tytułów.</p>
+        <div class="tool-grid">
+            <a href="https://www.skraper.net/" class="tool-card" target="_blank"><h3>Skraper</h3><p>Genialne narzędzie do automatycznego pobierania okładek, screenshotów i metadanych dla Twojej kolekcji ROM-ów.</p></a>
+            <a href="https://emulation.gametechwiki.com/index.php/ROM_managers" class="tool-card" target="_blank"><h3>Menedżery ROM-ów</h3><p>Lista programów pomagających w weryfikacji i organizacji dużych zbiorów gier (ROM-ów).</p></a>
+            <a href="https://romhacking.net/" class="tool-card" target="_blank"><h3>ROMHacking.net</h3><p>Gigantyczna baza fanowskich tłumaczeń, hacków, modyfikacji i narzędzi do edycji klasycznych gier.</p></a>
+            <a href="https://www.romhacking.com/" class="tool-card" target="_blank"><h3>ROMHacking.com</h3><p>Alternatywna, równie bogata strona poświęcona scenie ROM hackingu i fanowskim tłumaczeniom.</p></a>
+        </div>
+
+        <h3>Specjalistyczne Poradniki Konfiguracji</h3>
+        <p>Gotowe instrukcje krok po kroku, które pomogą Ci optymalnie skonfigurować najpopularniejsze emulatory i uruchomić wymagające gry.</p>
+        <div class="tool-grid">
+            <a href="https://cemu.cfw.guide/" class="tool-card" target="_blank"><h3>Cemu Guide (Wii U)</h3><p>Kompletny poradnik konfiguracji emulatora Cemu, idealny do gier takich jak Zelda: Breath of the Wild.</p></a>
+            <a href="https://github.com/shiiion/dolphin/wiki/Performance-Guide" class="tool-card" target="_blank"><h3>Dolphin Performance Guide</h3><p>Oficjalny poradnik optymalizacji wydajności dla emulatora Dolphin (GameCube / Wii).</p></a>
+        </div>
+
+
+        <p style="text-align: center; margin-top: 40px; color: var(--text-muted);">To już kompletny poradnik. Mam nadzieję, że się przyda!</p>
+
+    </div>
+</body>
+</html>

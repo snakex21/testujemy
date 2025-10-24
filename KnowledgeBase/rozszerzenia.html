@@ -1,0 +1,252 @@
+<!DOCTYPE html>
+<html lang="pl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Rozszerzenia - Lokalna Baza Wiedzy</title>
+    <link rel="stylesheet" href="style.css">
+    <style>
+        .play-button.extension-button {
+            height: auto;
+            align-items: flex-start;
+        }
+        .extension-text-container {
+            display: flex;
+            flex-direction: column;
+        }
+        .extension-text-container .title {
+            font-weight: 600;
+            color: var(--text-color);
+        }
+        .extension-text-container .description {
+            font-size: 0.9rem;
+            color: var(--text-muted);
+            margin-top: var(--spacing-xs);
+        }
+    </style>
+</head>
+<body>
+
+    <nav id="table-of-contents"></nav>
+
+    <div class="main-wrapper">
+        <header>
+            <h1>🧩 Rozszerzenia do Przeglądarki</h1>
+            <a href="index.html" class="back-button">← Powrót do strony głównej</a>
+        </header>
+
+        <nav class="tabs">
+            <!-- Poniżej znajduje się finalna wersja paska nawigacyjnego. -->
+
+            <a href="ai.html" class="tab-link">
+                <img src="icons/brain.svg" alt="AI">
+            </a>
+            <a href="edukacja.html" class="tab-link">
+                <img src="icons/education-icon.svg" alt="Edukacja">
+            </a>
+            <a href="ebooki.html" class="tab-link">
+                <img src="icons/ebook.png" alt="eBooki">
+            </a>
+            <a href="filmy.html" class="tab-link">
+                <img src="icons/play-video-150x150.png" alt="Filmy">
+            </a>
+            <a href="gry.html" class="tab-link">
+                <img src="icons/joystick-150x150.png" alt="Gry">
+            </a>
+            <a href="komiksy.html" class="tab-link">
+                <img src="icons/comic-book.png" alt="Komiksy">
+            </a>
+            <a href="linux-macos.html" class="tab-link">
+                <img src="icons/linux-logo.svg" alt="Linux i macOS">
+            </a>
+            <a href="livetv.html" class="tab-link">
+                <img src="icons/live-broadcast.png" alt="Live TV">
+            </a>
+            <a href="media-spolecznosciowe.html" class="tab-link">
+                <img src="icons/users.svg" alt="Media Społecznościowe">
+            </a>
+            <a href="miedzynarodowe.html" class="tab-link">
+                <img src="icons/globe.svg" alt="Międzynarodowe">
+            </a>
+            <a href="muzyka.html" class="tab-link">
+                <img src="icons/music-150x150.png" alt="Muzyka">
+            </a>
+            <a href="narzedzia-graficzne.html" class="tab-link">
+                <img src="icons/paint-brush.svg" alt="Narzędzia Graficzne">
+            </a>
+            <a href="narzedzia-plikow.html" class="tab-link">
+                <img src="icons/file-tools.svg" alt="Narzędzia Plikowe">
+            </a>
+            <a href="narzedzia-systemowe.html" class="tab-link">
+                <img src="icons/system-tools.svg" alt="Narzędzia Systemowe">
+            </a>
+            <a href="narzedzia-tekstowe.html" class="tab-link">
+                <img src="icons/text-tools.svg" alt="Narzędzia Tekstowe">
+            </a>
+            <a href="pobieranie.html" class="tab-link">
+                <img src="icons/download.svg" alt="Pobieranie">
+            </a>
+            <a href="poradnik-gry.html" class="tab-link">
+                <img src="icons/guide-book.svg" alt="Poradnik Gracza">
+            </a>
+            <a href="pozostale.html" class="tab-link">
+                <img src="icons/box.svg" alt="Pozostałe">
+            </a>
+            <a href="programowanie.html" class="tab-link">
+                <img src="icons/code-icon.svg" alt="Programowanie">
+            </a>
+            <a href="privacy.html" class="tab-link">
+                <img src="icons/shield.svg" alt="Prywatność">
+            </a>
+            <a href="rozszerzenia.html" class="tab-link active">
+                <img src="icons/puzzle-icon.svg" alt="Rozszerzenia">
+            </a>
+            <a href="sport.html" class="tab-link">
+                <img src="icons/basketball-150x150.png" alt="Sport">
+            </a>
+            <a href="telefony.html" class="tab-link">
+                <img src="icons/smartphone.svg" alt="Telefony">
+            </a>
+            <a href="torrenty.html" class="tab-link">
+                <img src="icons/utorrent-150x150.png" alt="Torrenty">
+            </a>
+            <a href="wideo.html" class="tab-link">
+                <img src="icons/film-icon.svg" alt="Wideo">
+            </a>
+            <a href="wschodni-skarbiec.html" class="tab-link">
+                <img src="icons/woman-150x150.png" alt="Wschodni Skarbiec">
+            </a>
+        </nav>
+
+        <main class="button-container" id="content">
+            <div class="loading">Ładowanie...</div>
+        </main>
+    </div>
+
+    <script src="dane/rozszerzenia-dane.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const contentContainer = document.getElementById('content');
+            const tocContainer = document.getElementById('table-of-contents');
+
+            if (!pageData || !contentContainer || !tocContainer) {
+                contentContainer.innerHTML = '<div class="error">Błąd: Nie można załadować danych lub znaleźć kontenerów.</div>';
+                return;
+            }
+
+            const createExtensionElement = (link) => {
+                const a = document.createElement('a');
+                a.href = link.url;
+                a.className = 'play-button extension-button';
+                a.target = '_blank';
+                a.innerHTML = `
+                    <img src="icons/puzzle-icon.svg" alt="Rozszerzenie">
+                    <div class="extension-text-container">
+                        <span class="title">${link.name}</span>
+                        <span class="description">${link.description}</span>
+                    </div>
+                `;
+                return a;
+            };
+
+            const renderContent = () => {
+                contentContainer.innerHTML = '';
+                const tocList = document.createElement('ul');
+                tocContainer.innerHTML = '<h4>Spis Treści</h4>';
+                
+                // --- START NOWOŚCI ---
+                const searchContainer = document.createElement('div');
+                searchContainer.className = 'search-container';
+                const searchBox = document.createElement('input');
+                searchBox.type = 'text';
+                searchBox.className = 'search-box';
+                searchBox.id = 'searchBox';
+                searchBox.placeholder = '🔍 Wyszukaj rozszerzenie...';
+                searchContainer.appendChild(searchBox);
+                contentContainer.appendChild(searchContainer);
+                // --- KONIEC NOWOŚCI ---
+
+                pageData.sections.forEach(section => {
+                    const sectionWrapper = document.createElement('div');
+                    sectionWrapper.id = section.id;
+                    
+                    const h2 = document.createElement('h2');
+                    h2.textContent = section.title;
+                    sectionWrapper.appendChild(h2);
+                    
+                    const tocLink = document.createElement('li');
+                    tocLink.innerHTML = `<a href="#${section.id}">${section.title.replace(/<[^>]*>?/gm, '')}</a>`;
+                    tocList.appendChild(tocLink);
+
+                    const grid = document.createElement('div');
+                    grid.className = 'category-grid';
+                    section.links.forEach(link => grid.appendChild(createExtensionElement(link)));
+                    sectionWrapper.appendChild(grid);
+                    
+                    contentContainer.appendChild(sectionWrapper);
+                });
+                
+                if(pageData.infoBoxes) {
+                    pageData.infoBoxes.forEach(box => {
+                        const boxDiv = document.createElement('div');
+                        boxDiv.className = box.type === 'info' ? 'info-box' : 'warning-box';
+                        let content = '';
+                        box.items.forEach(item => {
+                           content += `<p>${item}</p>`;
+                        });
+                        boxDiv.innerHTML = `<h3>${box.title}</h3>${content}`;
+                        contentContainer.appendChild(boxDiv);
+                    });
+                }
+
+                tocContainer.appendChild(tocList);
+            };
+            
+            // --- START NOWOŚCI ---
+            const initializeEventListeners = () => {
+                const searchBox = document.getElementById('searchBox');
+                if (searchBox) {
+                    searchBox.addEventListener('input', (e) => {
+                        const searchTerm = e.target.value.toLowerCase();
+                        const buttons = document.querySelectorAll('.play-button');
+                        
+                        buttons.forEach(button => {
+                            const text = button.textContent.toLowerCase();
+                            if (text.includes(searchTerm)) {
+                                button.style.display = 'flex';
+                            } else {
+                                button.style.display = 'none';
+                            }
+                        });
+                    });
+                }
+            };
+            // --- KONIEC NOWOŚCI ---
+            
+            const initializeScrollSpy = () => {
+                const sections = document.querySelectorAll('.button-container > div[id]');
+                const tocLinks = document.querySelectorAll('#table-of-contents a');
+
+                const observer = new IntersectionObserver(entries => {
+                    entries.forEach(entry => {
+                        if (entry.isIntersecting) {
+                            tocLinks.forEach(link => {
+                                link.classList.remove('active');
+                                if (link.getAttribute('href') === `#${entry.target.id}`) {
+                                    link.classList.add('active');
+                                }
+                            });
+                        }
+                    });
+                }, { rootMargin: '-20% 0px -70% 0px', threshold: 0.1 });
+
+                sections.forEach(section => observer.observe(section));
+            };
+            
+            renderContent();
+            initializeEventListeners(); // NOWOŚĆ
+            initializeScrollSpy();
+        });
+    </script>
+</body>
+</html>
